@@ -1,0 +1,47 @@
+-- Supabase: Question bank
+create extension if not exists "pgcrypto";
+
+create table if not exists public.questions (
+  id uuid primary key default gen_random_uuid(),
+  stem text not null,
+  choices jsonb not null check (jsonb_typeof(choices) = 'array'),
+  correct text not null check (char_length(correct) = 1),
+  rationale text not null,
+  category text,
+  tags text[],
+  difficulty text,
+  created_at timestamptz not null default now()
+);
+
+alter table public.questions enable row level security;
+
+do $$ begin
+  if not exists (select 1 from pg_policies where polrelid = 'public.questions'::regclass and polname = 'Public read') then
+    create policy "Public read" on public.questions for select using (true);
+  end if;
+  if not exists (select 1 from pg_policies where polrelid = 'public.questions'::regclass and polname = 'No public inserts') then
+    create policy "No public inserts" on public.questions for insert with check (false);
+  end if;
+  if not exists (select 1 from pg_policies where polrelid = 'public.questions'::regclass and polname = 'No public updates') then
+    create policy "No public updates" on public.questions for update using (false);
+  end if;
+  if not exists (select 1 from pg_policies where polrelid = 'public.questions'::regclass and polname = 'No public deletes') then
+    create policy "No public deletes" on public.questions for delete using (false);
+  end if;
+end $$;
+
+insert into public.questions (stem, choices, correct, rationale, category, tags, difficulty)
+values (
+  'You receive report on four clients. Who should you assess first?',
+  '[
+    {"text":"Client 12 hr post-op with pain 7/10 requesting PRN analgesic."},
+    {"text":"Client with asthma using accessory muscles and SpO2 88% on room air."},
+    {"text":"Client with new-onset confusion and blood glucose 62 mg/dL."},
+    {"text":"Client with stage II pressure injury requesting dressing change."}
+  ]'::jsonb,
+  'B',
+  'Airway takes priority. Signs of respiratory distress and hypoxemia demand immediate assessment/intervention (ABCs). Option C is urgent but airway/oxygenation comes first; treat hypoglycemia promptly after stabilizing breathing. Pain and routine care can wait briefly.',
+  'Prioritization: ABCs & safety',
+  ARRAY['ABCs','Prioritization'],
+  'medium'
+);
