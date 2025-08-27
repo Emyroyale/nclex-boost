@@ -3,120 +3,126 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NCLEX Daily Boost — One smart question a day</title>
+  <title>NCLEX Daily Boost</title>
   <meta name="description" content="Pass the NCLEX with confidence — one smart question a day." />
   <style>
     :root {
-      --bg: #f6f7fb;
-      --text: #0e141b;
-      --muted: #475569;
-      --primary: #2aa6a1;
+      --bg: #f9fafc;          /* Light Gray */
+      --text: #1f2d3d;        /* Dark Slate */
+      --primary: #2aa6a1;     /* Teal */
       --primary-600: #238f8b;
-      --accent: #ff6b6b;
+      --accent: #ff6b6b;      /* Coral */
       --accent-600: #e25858;
-      --card: rgba(255,255,255,0.78);
-      --shadow: 0 12px 36px rgba(14, 20, 27, 0.10);
+      --muted: #6b7c93;
+      --card: rgba(255,255,255,0.7);
+      --shadow: 0 8px 30px rgba(31, 45, 61, 0.08);
       --radius: 18px;
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: ui-serif, Georgia, 'Times New Roman', Times, serif;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 600px at 20% -10%, #ffffff 10%, #f1f4f9 60%, #eaf1f6 100%) no-repeat, var(--bg);
-      line-height: 1.65;
-      letter-spacing: 0.1px;
+      background: var(--bg);
+      line-height: 1.5;
     }
     .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
     header {
       position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(10px);
-      background: rgba(246,247,251,0.88); border-bottom: 1px solid rgba(14,20,27,0.08);
+      background: rgba(249,250,252,0.85); border-bottom: 1px solid rgba(31,45,61,0.06);
     }
     .nav { display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
-    .brand { display:flex; align-items:center; gap: 10px; font-weight: 800; letter-spacing: 0.3px; }
-    .logo { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, var(--primary), #53cbc6);
-            display:grid; place-items:center; color:white; font-weight:900; box-shadow: var(--shadow); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
-    nav a { color: var(--muted); text-decoration: none; margin: 0 10px; font-weight: 700; }
+    .brand { display:flex; align-items:center; gap: 10px; font-weight: 800; letter-spacing: 0.2px; }
+    .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), #53cbc6);
+            display:grid; place-items:center; color:white; font-weight:900; box-shadow: var(--shadow); }
+    nav a { color: var(--muted); text-decoration: none; margin: 0 10px; font-weight: 600; }
     nav a:hover { color: var(--text); }
-    section { padding: 44px 0; }
-    .card { background: var(--card); border: 1px solid rgba(14,20,27,0.08); border-radius: var(--radius); box-shadow: var(--shadow);
-            backdrop-filter: saturate(180%) blur(12px); }
-    .pad { padding: 22px; }
-    .hero { padding: 72px 0 28px; }
-    .hero h1 { font-size: clamp(30px, 5.4vw, 56px); margin: 0 0 12px; line-height: 1.15; }
-    .hero p { font-size: clamp(16px, 2vw, 21px); color: var(--muted); margin: 0 0 24px; }
-    .kicker { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial; font-size: 12px; letter-spacing: .45px; text-transform: uppercase; color: var(--muted); font-weight: 900; }
+
+    .hero { padding: 56px 0 28px; }
+    .hero h1 { font-size: clamp(28px, 5vw, 44px); margin: 0 0 10px; }
+    .hero p { font-size: clamp(16px, 2vw, 20px); color: var(--muted); margin: 0 0 24px; }
     .cta-row { display:flex; flex-wrap:wrap; gap: 12px; }
-    .btn { appearance:none; border:0; padding: 12px 18px; border-radius: 999px; font-weight: 800; cursor:pointer;
-           transition: transform .08s ease, box-shadow .18s ease, filter .2s ease; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial; }
+
+    .btn { appearance:none; border:0; padding: 12px 18px; border-radius: 999px; font-weight: 700; cursor:pointer; transition: transform .08s ease, box-shadow .2s ease, filter .2s ease; }
+    .btn:active { transform: translateY(0); }
     .btn:hover { transform: translateY(-1px); filter: saturate(1.05); }
     .btn-primary { background: linear-gradient(135deg, var(--primary), #53cbc6); color:white; box-shadow: var(--shadow); }
     .btn-accent  { background: linear-gradient(135deg, var(--accent), #ffa3a3); color:white; box-shadow: var(--shadow); }
-    .btn-ghost   { background: transparent; border: 2px solid rgba(14,20,27,0.18); color: var(--text); }
+    .btn-ghost   { background: transparent; border: 2px solid rgba(31,45,61,0.15); color: var(--text); }
+
+    section { padding: 36px 0; }
+    .card { background: var(--card); border: 1px solid rgba(31,45,61,0.08); border-radius: var(--radius); box-shadow: var(--shadow);
+            backdrop-filter: saturate(180%) blur(12px); }
+    .pad { padding: 20px; }
+
     .grid { display:grid; gap: 16px; }
     @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-    .badge { display:inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(42,166,161,0.12); color: var(--primary-600); font-weight: 800; font-size: 12px; letter-spacing: .3px; }
+
+    .badge { display:inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(42,166,161,0.12); color: var(--primary-600); font-weight: 700; font-size: 12px; letter-spacing: .3px; }
     .choices { display:grid; gap: 10px; margin: 12px 0; }
-    .choice { display:flex; gap:10px; align-items:flex-start; padding: 10px; border-radius: 12px; border: 1px solid rgba(14,20,27,0.10); background: white; }
+    .choice { display:flex; gap:10px; align-items:flex-start; padding: 10px; border-radius: 12px; border: 1px solid rgba(31,45,61,0.08); background: white; }
     .rationale { display:none; margin-top: 10px; color: #0f5132; background: #d1e7dd; border: 1px solid #badbcc; padding: 12px; border-radius: 12px; }
     .rationale.show { display:block; }
+
     .streak { margin-top: 12px; }
-    .bar { height: 10px; background: rgba(14,20,27,0.08); border-radius: 999px; overflow: hidden; }
+    .bar { height: 10px; background: rgba(31,45,61,0.08); border-radius: 999px; overflow: hidden; }
     .bar > span { display:block; height:100%; background: linear-gradient(90deg, var(--accent), #ff9c9c); width: 0%; transition: width .5s ease; }
-    .muted { color: var(--muted); }
-    .chat { height: 340px; overflow:auto; padding: 12px; background: white; border-radius: 14px; border: 1px solid rgba(14,20,27,0.10); }
+
+    .chat { height: 340px; overflow:auto; padding: 12px; background: white; border-radius: 14px; border: 1px solid rgba(31,45,61,0.08); }
     .bubble { max-width: 78%; padding: 10px 12px; border-radius: 16px; margin: 8px 0; box-shadow: var(--shadow); }
     .me    { background: #eef2f7; margin-left: auto; border-bottom-right-radius: 6px; }
     .tutor { background: #e7fbf9; border-left: 3px solid var(--primary); border-bottom-left-radius: 6px; }
     .pearl { font-size: 13px; color: #0f5132; background: #d1e7dd; border-left: 3px solid #0f5132; }
     .chat-row { display:flex; gap: 10px; margin-top: 10px; }
-    .chat-row input { flex:1; padding: 12px 14px; border-radius: 999px; border: 1px solid rgba(14,20,27,0.15); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
+    .chat-row input { flex:1; padding: 12px 14px; border-radius: 999px; border: 1px solid rgba(31,45,61,0.15); }
+
     .case-selector { display:flex; gap: 8px; overflow:auto; padding-bottom: 8px; }
-    .pill { white-space: nowrap; border-radius: 999px; padding: 8px 12px; border: 1px solid rgba(14,20,27,0.12); background:white; cursor:pointer; font-weight:800; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
+    .pill { white-space: nowrap; border-radius: 999px; padding: 8px 12px; border: 1px solid rgba(31,45,61,0.12); background:white; cursor:pointer; font-weight:700; }
     .pill.active { background: linear-gradient(135deg, var(--primary), #69d9d3); color:white; border-color: transparent; }
+
     .tabs { display:flex; gap: 6px; margin-top: 10px; }
-    .tab { flex: 1; text-align: center; background: white; border:1px solid rgba(14,20,27,0.12); padding: 10px; border-radius: 12px; cursor:pointer; font-weight:800; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
+    .tab { flex: 1; text-align: center; background: white; border:1px solid rgba(31,45,61,0.12); padding: 10px; border-radius: 12px; cursor:pointer; font-weight:700; }
     .tab.active { background: #e6fffd; border-color: var(--primary); }
-    .ngn-panels { background:white; border:1px solid rgba(14,20,27,0.12); border-radius: 14px; padding: 14px; min-height: 160px; }
+    .ngn-panels { background:white; border:1px solid rgba(31,45,61,0.12); border-radius: 14px; padding: 14px; min-height: 160px; }
+
     .how { display:grid; gap: 14px; grid-template-columns: 1fr; }
     .how .step { display:flex; gap: 12px; align-items:flex-start; }
-    .icon { width: 40px; height: 40px; border-radius: 12px; display:grid; place-items:center; background: #e6fffd; color: var(--primary-600); font-weight: 900; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
+    .icon { width: 40px; height: 40px; border-radius: 12px; display:grid; place-items:center; background: #e6fffd; color: var(--primary-600); font-weight: 900; }
     @media (min-width: 700px){ .how { grid-template-columns: repeat(3,1fr); } }
+
+    .pricing { display:grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .pricing { grid-template-columns: repeat(3,1fr);} }
+    .price-tag { font-size: 28px; font-weight: 900; }
+    .featured { border:2px solid var(--primary); position:relative; }
+    .ribbon { position:absolute; top:10px; right:10px; background: linear-gradient(135deg, var(--primary), #69d9d3); color:white; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px; }
+
+    footer { padding: 40px 0; text-align:center; color: var(--muted); font-size: 14px; }
+
+    .muted { color: var(--muted); }
+    .center { text-align:center; }
+    .mt-8 { margin-top: 8px; } .mt-16{ margin-top:16px;} .mt-24{ margin-top:24px;} .mb-0{ margin-bottom:0; }
+
     .dashboard { display:grid; gap:16px; grid-template-columns: 1fr; }
     @media (min-width: 900px){ .dashboard { grid-template-columns: 1.2fr 1fr; } }
     .ring { width: 140px; height: 140px; border-radius: 50%; background:
-      conic-gradient(var(--primary) calc(var(--p,0)*1%), rgba(14,20,27,0.08) 0);
+      conic-gradient(var(--primary) calc(var(--p,0)*1%), rgba(31,45,61,0.08) 0);
       display:grid; place-items:center; margin:auto; box-shadow: var(--shadow); }
-    .ring-inner { width: 108px; height:108px; border-radius:50%; background:white; display:grid; place-items:center; border:1px solid rgba(14,20,27,0.08); }
+    .ring-inner { width: 108px; height:108px; border-radius:50%; background:white; display:grid; place-items:center; border:1px solid rgba(31,45,61,0.08); }
     .mini-grid { display:grid; gap:12px; grid-template-columns: repeat(2,1fr); }
-    .tile { background:white; border:1px solid rgba(14,20,27,0.08); border-radius: 14px; padding:14px; box-shadow: var(--shadow); }
+    .tile { background:white; border:1px solid rgba(31,45,61,0.08); border-radius: 14px; padding:14px; box-shadow: var(--shadow); }
     .tile h4 { margin:6px 0 4px; }
     .tile small { color: var(--muted); }
-    .pricing { display:grid; gap: 16px; grid-template-columns: 1fr; }
-    @media (min-width: 900px){ .pricing { grid-template-columns: repeat(3,1fr);} }
-    .price-tag { font-size: 28px; font-weight: 900; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
-    .featured { border:2px solid var(--primary); position:relative; }
-    .ribbon { position:absolute; top:10px; right:10px; background: linear-gradient(135deg, var(--primary), #69d9d3); color:white; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
-    .trial { display:inline-block; background: linear-gradient(135deg, var(--accent), #ffa3a3); color:#fff; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px; margin-left:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
-    .guarantee { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#e7fbf9; color: var(--primary-600); font-weight:800; border:1px solid rgba(14,20,27,0.06); margin-left:8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; }
-    footer { padding: 40px 0; text-align:center; color: var(--muted); font-size: 14px; }
-    .footer-grid { display:grid; gap: 16px; grid-template-columns: 1fr; text-align:left; }
-    .footer-col h4 { margin: 0 0 8px; }
-    .footer-col a { color: var(--muted); text-decoration:none; display:block; margin: 6px 0; }
-    .footer-note { text-align:center; color: var(--muted); margin-top: 12px; }
-    @media(min-width: 800px){ .footer-grid { grid-template-columns: repeat(4,1fr); } }
-    .blog-grid { display:grid; gap: 16px; grid-template-columns: 1fr; }
-    @media(min-width: 900px){ .blog-grid { grid-template-columns: repeat(3, 1fr); } }
-    .post { background:white; border:1px solid rgba(14,20,27,0.08); border-radius:14px; padding:16px; box-shadow: var(--shadow); }
-    .post h4 { margin: 8px 0; }
-    .post small { color: var(--muted); display:block; margin-bottom:8px; }
-    .center { text-align:center; }
-    .mt-8 { margin-top: 8px; } .mt-16{ margin-top:16px;} .mt-24{ margin-top:24px;} .mb-0{ margin-bottom:0; }
-    details summary { cursor: pointer; font-weight: 800; }
   </style>
 </head>
 <body>
+  <!-- Simple inline config (edit the ANON key only) -->
+  <script>
+    window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
+    window.SUPABASE_URL = "https://awfhdinvmhalhdrecxla.supabase.co";
+    window.SUPABASE_ANON_KEY = "sb_publishable_M9L-yNV6SAL8YYx9Kkc-YA_u_TcsSWt";
+  </script>
+
   <header>
     <div class="container nav">
       <div class="brand"><div class="logo">NB</div> NCLEX Daily Boost</div>
@@ -125,44 +131,45 @@
         <a href="#daily">Daily Q</a>
         <a href="#tutor">Tutor Mode</a>
         <a href="#cases">NGN Cases</a>
-        <a href="#blog">Blog</a>
         <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
         <a href="#signup" class="btn btn-primary" style="padding:8px 14px">Get Pro</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
       <div class="container grid grid-2">
         <div>
-          <span class="kicker">Nursing students • US</span>
+          <span class="badge">Nursing students • US</span>
           <h1>Pass the NCLEX with confidence — one smart question a day.</h1>
-          <p>Short, high‑yield practice with clear rationales, adaptive tutoring, and Next Gen case studies. Stay consistent with a simple daily streak.</p>
+          <p>Short, high-yield practice with clear rationales, adaptive tutoring, and Next Gen case studies. Stay consistent with a simple daily streak.</p>
           <div class="cta-row">
             <a href="#tutor" class="btn btn-primary">Start Tutor Mode</a>
             <a href="#daily" class="btn btn-accent">Try Today’s Question</a>
             <a href="#pricing" class="btn btn-ghost">See Pricing</a>
           </div>
         </div>
+
+        <!-- Daily Question Card -->
         <div class="card pad" id="daily">
           <div class="badge">Preview</div>
           <h3 class="mb-0">Daily Question</h3>
-          <p class="muted mt-8" id="dqCategory">Prioritization: ABCs & safety</p>
+          <p class="muted mt-8">Prioritization: ABCs & safety</p>
           <div id="dq">
-            <p id="dqStem"><strong>Scenario:</strong> You receive report on four clients. Who should you assess <em>first</em>?</p>
+            <p><strong>Scenario:</strong> You receive report on four clients. Who should you assess <em>first</em>?</p>
             <div class="choices" id="dqChoices">
-              <label class="choice" id="choiceA"><input type="radio" name="dq" value="A"> A. Client 12 hr post‑op with pain 7/10 requesting PRN analgesic.</label>
-              <label class="choice" id="choiceB"><input type="radio" name="dq" value="B"> B. Client with asthma using accessory muscles and SpO₂ 88% on room air.</label>
-              <label class="choice" id="choiceC"><input type="radio" name="dq" value="C"> C. Client with new-onset confusion and blood glucose 62 mg/dL.</label>
-              <label class="choice" id="choiceD"><input type="radio" name="dq" value="D"> D. Client with stage II pressure injury requesting dressing change.</label>
+              <label class="choice"><input type="radio" name="dq" value="A"> A. Client 12 hr post-op with pain 7/10 requesting PRN analgesic.</label>
+              <label class="choice"><input type="radio" name="dq" value="B"> B. Client with asthma using accessory muscles and SpO₂ 88% on room air.</label>
+              <label class="choice"><input type="radio" name="dq" value="C"> C. Client with new-onset confusion and blood glucose 62 mg/dL.</label>
+              <label class="choice"><input type="radio" name="dq" value="D"> D. Client with stage II pressure injury requesting dressing change.</label>
             </div>
             <button class="btn btn-primary" id="dqCheck">Check answer</button>
             <button class="btn btn-ghost" id="dqDone" title="Add to streak">Mark as done</button>
-            <div class="rationale" id="dqRat"><strong>Answer: B.</strong> Airway takes priority. Signs of respiratory distress and hypoxemia demand immediate assessment/intervention (ABCs). Option C is urgent but airway/oxygenation comes first; treat hypoglycemia promptly after stabilizing breathing. Pain and routine care can wait briefly.</div>
+            <div class="rationale" id="dqRat"></div>
             <div class="streak">
-              <div class="kicker">Streak</div>
+              <div class="badge">Streak</div>
               <div class="bar"><span id="streakBar"></span></div>
               <div class="muted" id="streakText">0 days</div>
             </div>
@@ -171,22 +178,23 @@
       </div>
     </section>
 
+    <!-- Dashboard (mock) -->
     <section id="dashboard">
       <div class="container dashboard">
         <div class="card pad">
           <div class="grid" style="grid-template-columns: 160px 1fr; align-items:center; gap:16px;">
             <div>
-              <div class="ring" style="--p:76"><div class="ring-inner"><div class="center"><strong>76%</strong><div class="muted" style="font-size:12px">Mastery</div></div></div></div>
+              <div class="ring" style="--p:72"><div class="ring-inner"><div class="center"><strong>72%</strong><div class="muted" style="font-size:12px">Mastery</div></div></div></div>
             </div>
             <div>
               <h3 class="mb-0">Today’s Boost</h3>
-              <p class="muted">1 prioritized question • 1 micro‑lesson • 1 minute recap</p>
+              <p class="muted">1 prioritized question • 1 micro-lesson • 1 minute recap</p>
               <div class="cta-row">
                 <a href="#daily" class="btn btn-primary">Do today’s question</a>
                 <a href="#tutor" class="btn btn-ghost">Open Tutor</a>
               </div>
               <div class="streak mt-16">
-                <div class="kicker">Streak</div>
+                <div class="badge">Streak</div>
                 <div class="bar"><span id="dashStreak" style="width:0%"></span></div>
                 <div class="muted" id="dashStreakText">0 days</div>
               </div>
@@ -194,19 +202,19 @@
           </div>
           <div class="mini-grid mt-16">
             <div class="tile"><span class="badge">NGN</span><h4>Case Pack</h4><small>5 cases • 18 items</small></div>
-            <div class="tile"><span class="badge">Pharm</span><h4>High‑Alert Meds</h4><small>10 Qs • 6 pearls</small></div>
+            <div class="tile"><span class="badge">Pharm</span><h4>High-Alert Meds</h4><small>10 Qs • 6 pearls</small></div>
             <div class="tile"><span class="badge">Safety</span><h4>Prioritization</h4><small>8 Qs • trending weak spot</small></div>
-            <div class="tile"><span class="badge">Review</span><h4>Rapid Recap</h4><small>3 mins • cheat‑sheet</small></div>
+            <div class="tile"><span class="badge">Review</span><h4>Rapid Recap</h4><small>3 mins • cheat-sheet</small></div>
           </div>
         </div>
         <div class="grid">
           <div class="card pad">
             <h4 class="mb-0">Weekly Focus</h4>
-            <p class="muted">Med‑Surg respiratory • NGN clinical judgment</p>
+            <p class="muted">Med-Surg respiratory • NGN clinical judgment</p>
             <ul class="mt-8">
               <li>Target SpO₂/ABG interpretation drills</li>
               <li>2 NGN case sets (Sepsis, PE)</li>
-              <li>Mock mini‑exam Friday (15 Q)</li>
+              <li>Mock mini-exam Friday (15 Q)</li>
             </ul>
           </div>
           <div class="card pad">
@@ -218,22 +226,33 @@
       </div>
     </section>
 
+    <!-- How it Works -->
     <section id="how">
       <div class="container">
         <h2 class="center">How it works</h2>
         <div class="how mt-16">
-          <div class="card pad step"><div class="icon">1</div><div><h4>One smart Q/day</h4><p class="muted">High‑yield items mapped to the NCLEX test plan with concise rationales. Build momentum—one bite at a time.</p></div></div>
-          <div class="card pad step"><div class="icon">2</div><div><h4>Adaptive Tutor</h4><p class="muted">Talk through prioritization, pharm, and safety. The tutor asks, adapts, and teaches with pearls.</p></div></div>
-          <div class="card pad step"><div class="icon">3</div><div><h4>Next Gen Case Studies</h4><p class="muted">Unfolding cases with <strong>History / Labs / Orders</strong> tabs plus guided Q&A for clinical judgment.</p></div></div>
+          <div class="card pad step">
+            <div class="icon">1</div>
+            <div><h4>One smart Q/day</h4><p class="muted">High-yield items mapped to the NCLEX test plan with concise rationales. Build momentum one bite at a time.</p></div>
+          </div>
+          <div class="card pad step">
+            <div class="icon">2</div>
+            <div><h4>Adaptive Tutor</h4><p class="muted">Chat through prioritization, pharm, safety, and more. The tutor asks, adapts, and teaches with pearls.</p></div>
+          </div>
+          <div class="card pad step">
+            <div class="icon">3</div>
+            <div><h4>Next Gen Case Studies</h4><p class="muted">Unfolding cases with <strong>History / Labs / Orders</strong> tabs plus guided Q&A for clinical judgment practice.</p></div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Tutor Mode -->
     <section id="tutor">
       <div class="container grid grid-2">
         <div>
           <h2 class="mb-0">Tutor Mode</h2>
-          <p class="muted">Conversation‑style practice: the tutor asks ⇒ you think aloud ⇒ instant feedback + teaching pearl.</p>
+          <p class="muted">Conversation-style practice: the tutor asks ⇒ you think aloud ⇒ instant feedback + teaching pearl.</p>
           <div class="card pad">
             <div id="chat" class="chat"></div>
             <div class="chat-row">
@@ -245,9 +264,8 @@
         <div class="card pad">
           <div class="badge">Example prompt</div>
           <h3>Prioritization scenario</h3>
-          <p class="muted">An RN has four clients to see at shift start. Which is first and why?</p>
           <ul>
-            <li>Airway/breathing outrank circulation and pain.</li>
+            <li>Airway/breathing problems outrank circulation and pain.</li>
             <li>Unstable vitals & new acute changes outrank chronic issues.</li>
             <li>Think safety: suicide risk, active bleeding, seizures, etc.</li>
           </ul>
@@ -256,6 +274,7 @@
       </div>
     </section>
 
+    <!-- NGN Case Studies -->
     <section id="cases">
       <div class="container">
         <h2 class="center">NGN Case Studies</h2>
@@ -272,128 +291,157 @@
       </div>
     </section>
 
-    <section id="blog">
-      <div class="container">
-        <h2 class="center">From the Blog</h2>
-        <div class="blog-grid mt-16">
-          <article class="post"><small>Study Strategy • 4 min read</small><h4>ABCs in 90 seconds: a mental model for any shift</h4><p class="muted">Use a simple question—“Who deteriorates first without me?”—to rank patients when everything feels urgent.</p></article>
-          <article class="post"><small>Meds & Safety • 5 min read</small><h4>High‑alert meds: 6 pitfalls students keep making</h4><p class="muted">Look‑alikes/sound‑alikes, infusion rates, and how to sanity‑check an order in 20 seconds.</p></article>
-          <article class="post"><small>Mindset • 3 min read</small><h4>Test‑day nerves: a 7‑minute pre‑exam routine</h4><p class="muted">Quick breathing + recall prompts to flip your brain from panic to performance.</p></article>
-        </div>
-      </div>
-    </section>
-
+    <!-- Pricing -->
     <section id="pricing">
       <div class="container">
-        <h2 class="center">Simple pricing <span class="trial">3‑Day Free Trial</span> <span class="guarantee">✔ 100% Money‑Back</span></h2>
+        <h2 class="center">Simple pricing</h2>
         <div class="pricing mt-16">
           <div class="card pad">
-            <div class="badge">Starter</div><h3>Daily Boost</h3><div class="price-tag">$19/mo</div>
-            <ul><li>1 question / day</li><li>Streak tracker</li><li>1 NGN sample case</li></ul>
-            <a class="btn btn-ghost" href="https://buy.stripe.com/test_StarterTrial" target="_blank" rel="noopener">Start 3‑Day Trial</a>
+            <div class="badge">Starter</div>
+            <h3>Daily Boost</h3>
+            <div class="price-tag">$19/mo</div>
+            <ul>
+              <li>1 question / day</li>
+              <li>Streak tracker</li>
+              <li>1 NGN sample case</li>
+            </ul>
+            <button class="btn btn-ghost">Get started</button>
           </div>
           <div class="card pad featured">
-            <div class="ribbon">Most Popular</div><div class="badge">Pro</div><h3>Unlimited + NGN</h3><div class="price-tag">$29/mo <span class="muted">or</span> $199/yr</div>
-            <ul><li>Unlimited questions + mock mini‑exams</li><li>Full NGN case library & bow‑tie/trend items</li><li>Analytics + weak‑area targeting</li><li>Tutor Mode scenarios & pearls</li></ul>
-            <a class="btn btn-primary" href="https://buy.stripe.com/test_ProTrial" target="_blank" rel="noopener">Start 3‑Day Trial</a>
+            <div class="ribbon">Most Popular</div>
+            <div class="badge">Pro</div>
+            <h3>Unlimited + NGN</h3>
+            <div class="price-tag">$29/mo <span class="muted">or</span> $199/yr</div>
+            <ul>
+              <li>Unlimited questions + mock mini-exams</li>
+              <li>Full NGN case library & bow-tie/trend items</li>
+              <li>Analytics + weak-area targeting</li>
+              <li>Tutor Mode scenarios & pearls</li>
+            </ul>
+            <a href="#signup" class="btn btn-primary">Go Pro</a>
           </div>
           <div class="card pad">
-            <div class="badge">Premium</div><h3>NCLEX Accelerator</h3><div class="price-tag">$49/mo</div>
-            <ul><li>All Pro features</li><li>2 full‑length mock exams/month</li><li>Priority updates & new cases</li><li>Downloadable recap sheets</li></ul>
-            <a class="btn btn-accent" href="https://buy.stripe.com/test_PremiumTrial" target="_blank" rel="noopener">Start 3‑Day Trial</a>
+            <div class="badge">Premium</div>
+            <h3>NCLEX Accelerator</h3>
+            <div class="price-tag">$49/mo</div>
+            <ul>
+              <li>All Pro features</li>
+              <li>2 full-length mock exams/month</li>
+              <li>Priority updates & new cases</li>
+              <li>Downloadable recap sheets</li>
+            </ul>
+            <a href="#signup" class="btn btn-accent">Upgrade</a>
           </div>
         </div>
-        <p class="center muted" style="margin-top:12px;font-size:12px;">Cancel anytime during the 3‑day trial. Money‑back applies to your first billing cycle if you’re not satisfied.</p>
-        <p class="center" id="trialEnds" style="display:none; font-size:13px; margin-top:8px;"></p>
       </div>
     </section>
 
-    <section id="testimonials">
+    <!-- Signup -->
+    <section id="signup">
       <div class="container grid grid-2">
-        <div class="card pad"><p class="quote">“The daily streak kept me consistent. The rationales are short and punchy—exactly what I needed between classes and clinicals.”</p><p><strong>— M., RN‑to‑be</strong></p></div>
-        <div class="card pad"><p class="quote">“NGN tabs feel like the real exam. Loved the tutor’s teaching pearls after each response.”</p><p><strong>— M.M., BSN</strong></p></div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container grid">
-        <h2 class="center">FAQ</h2>
-        <details class="mt-16"><summary>I'm overwhelmed. How will this reduce my NCLEX anxiety?</summary><div class="mt-8">We lower decision fatigue with a single high‑yield question per day plus a short rationale and a teaching pearl. The streak bar rewards consistency. Tutor Mode helps you practice thinking out loud—what you’ll need under stress.</div></details>
-        <details><summary>I only have 10 minutes between clinical and work. Is that enough?</summary><div class="mt-8">Yes. Each “boost” is designed for 2–5 minutes. If you have more time, Tutor Mode or NGN cases adapt to you—but progress is still meaningful if you only do the daily question.</div></details>
-        <details><summary>How are the questions written and aligned to the NCLEX?</summary><div class="mt-8">Original items mapped to the latest NCLEX test plan and NGN Clinical Judgment model (Recognize cues → Analyze → Prioritize → Intervene → Evaluate). Each item includes a concise rationale explaining why correct is correct—and why others aren’t.</div></details>
-        <details><summary>Money is tight. What’s the most affordable way to use this?</summary><div class="mt-8">Start with the free plan (1 Q/day). Upgrade to Pro monthly or save with annual. There’s a 3‑day free trial and a 100% money‑back guarantee on your first billing cycle.</div></details>
-        <details><summary>Can I pause or cancel anytime?</summary><div class="mt-8">Yes. Cancel anytime during the trial or later; Pro access continues through the end of your period.</div></details>
-        <details><summary>How does this help during clinicals?</summary><div class="mt-8">We emphasize safety, prioritization, and communication—skills used on the floor. NGN cases mirror unfolding patient scenarios, and Tutor Mode coaches your reasoning step by step.</div></details>
-        <details><summary>Do you guarantee a pass?</summary><div class="mt-8">No resource can ethically guarantee a pass. We maximize readiness by targeting high‑yield areas, reinforcing NGN thinking, and building a daily habit.</div></details>
+        <div>
+          <h2>Join the Pro waitlist</h2>
+          <p class="muted">Be first to know when full Pro launches. We’ll send early-bird pricing and a bonus NGN pack.</p>
+          <form id="signupForm" class="card pad">
+            <label for="email"><strong>Email</strong></label>
+            <input id="email" type="email" required placeholder="you@example.com" style="margin-top:6px; padding:12px 14px; border: 1px solid rgba(31,45,61,0.15); border-radius: 10px; width:100%" />
+            <button class="btn btn-primary mt-16" type="submit">Save my spot</button>
+            <p id="signupMsg" class="muted mt-16" style="display:none"></p>
+          </form>
+        </div>
+        <div class="card pad">
+          <div class="badge">Behind the scenes</div>
+          <h3>What’s coming</h3>
+          <ul>
+            <li>Daily plan mapped to NCLEX content categories</li>
+            <li>NGN item types: bow-tie & trend items</li>
+            <li>Analytics to target weak areas</li>
+          </ul>
+          <p class="muted">We create original questions and rationales—no third-party content copied.</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer style="background:rgba(255,255,255,0.85); border-top:1px solid rgba(14,20,27,0.08);">
+  <footer>
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h4>NCLEX Daily Boost</h4><p class="muted">Human, natural tutor—warm, direct, zero fluff.</p></div>
-        <div class="footer-col"><h4>Product</h4><a href="#pricing">Pricing</a><a href="#tutor">Tutor Mode</a><a href="#cases">NGN Cases</a><a href="#blog">Blog</a><a href="#faq">FAQ</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="#signup">About</a><a href="#signup">Contact</a></div>
-        <div class="footer-col"><h4>Legal</h4><a href="#faq">Privacy Policy</a><a href="#faq">Terms of Service</a><a href="#pricing">Refund Policy</a></div>
-      </div>
-      <div class="footer-note">© <span id="year"></span> NCLEX Daily Boost</div>
+      <p>© <span id="year"></span> NCLEX Daily Boost · <span class="muted">Human, natural tutor—warm, direct, zero fluff.</span></p>
     </div>
   </footer>
 
-  <!-- Config: create config.js next to this file with your keys/urls -->
-  <script src="config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // ---------- Small helpers ----------
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
     $('#year').textContent = new Date().getFullYear();
 
-    // Supabase integration (optional)
-    async function loadQuestionFromSupabase(){
-      try{
-        if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) return false;
-        const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-        const { data, error } = await client
-          .from('questions')
-          .select('id, stem, choices, correct, rationale, category')
-          .order('created_at', { ascending: false })
-          .limit(1)
-          .maybeSingle();
-        if (error || !data) return false;
-        if (data.category) $('#dqCategory').textContent = data.category;
-        $('#dqStem').innerHTML = '<strong>Scenario:</strong> ' + data.stem;
-        const labels = ['A','B','C','D'];
-        const cWrap = $('#dqChoices'); cWrap.innerHTML = '';
-        (data.choices || []).slice(0,4).forEach((c, idx)=>{
-          const letter = labels[idx] || String.fromCharCode(65+idx);
-          const lbl = document.createElement('label');
-          lbl.className = 'choice';
-          lbl.innerHTML = `<input type="radio" name="dq" value="${letter}"> ${letter}. ${(c.text||c)}`;
-          cWrap.appendChild(lbl);
+    // ---------- DAILY QUESTION (now dynamic from Supabase, with fallback) ----------
+    let CORRECT = 'B';
+    window._lastRationale = 'Airway takes priority. Signs of respiratory distress and hypoxemia demand immediate assessment (ABCs).';
+
+    async function loadDailyFromSupabase(){
+      if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) return; // config not set
+
+      try {
+        const url = `${window.SUPABASE_URL}/rest/v1/questions` +
+                    `?select=stem,choices,correct,rationale,category,created_at` +
+                    `&order=created_at.desc&limit=1`;
+        const res = await fetch(url, {
+          headers: {
+            apikey: window.SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${window.SUPABASE_ANON_KEY}`
+          }
         });
-        window.CORRECT = (data.correct || 'B').toUpperCase();
-        $('#dqRat').innerHTML = `<strong>Answer: ${window.CORRECT}.</strong> ${data.rationale || ''}`;
-        return true;
-      }catch(e){ return false; }
+        if (!res.ok) throw new Error('Supabase returned ' + res.status);
+        const rows = await res.json();
+        const q = rows[0];
+        if (!q) return; // table empty → keep fallback
+
+        // Category subtitle
+        const sub = document.querySelector('#daily .muted');
+        if (sub) sub.textContent = q.category || 'Daily Question';
+
+        // Stem
+        const stemP = document.querySelector('#dq p');
+        if (stemP) stemP.innerHTML = `<strong>Scenario:</strong> ${q.stem}`;
+
+        // Choices (support array of strings OR [{text}])
+        const choicesEl = $('#dqChoices');
+        if (choicesEl && Array.isArray(q.choices)) {
+          const letters = ['A','B','C','D','E','F'];
+          choicesEl.innerHTML = q.choices.map((c, i) => {
+            const txt = typeof c === 'string' ? c : c.text;
+            const L = letters[i];
+            return `<label class="choice"><input type="radio" name="dq" value="${L}"> ${L}. ${txt}</label>`;
+          }).join('');
+        }
+
+        CORRECT = (q.correct || 'A').trim().toUpperCase();
+        window._lastRationale = q.rationale || '';
+
+        // Reset any previous selection/rationale
+        const r = $('#dqRat'); r.classList.remove('show'); r.textContent = '';
+        $$('input[name="dq"]').forEach(i => i.checked = false);
+      } catch (e) {
+        console.warn('Supabase load failed:', e);
+      }
     }
 
-    // Daily Question logic
-    window.CORRECT = 'B';
-    (async ()=>{ await loadQuestionFromSupabase(); })();
-
+    // Check answer handler (uses dynamic CORRECT + rationale)
     $('#dqCheck').addEventListener('click', () => {
       const sel = document.querySelector('input[name="dq"]:checked');
       const r = $('#dqRat');
       if (!sel) { r.textContent = 'Please select an answer.'; r.classList.add('show'); return; }
-      const correct = sel.value.toUpperCase() === window.CORRECT;
+      const correct = sel.value === CORRECT;
       r.classList.add('show');
       if (!correct) {
-        r.innerHTML = '<strong>Not quite.</strong> Review ABCs—airway/breathing outrank circulation, pain, and routine care. See the full rationale above.';
+        r.innerHTML = `<strong>Not quite.</strong> ${window._lastRationale || 'Review ABCs—airway/breathing outrank circulation and pain.'}`;
+      } else {
+        r.innerHTML = `<strong>Answer: ${CORRECT}.</strong> ${window._lastRationale || ''}`;
       }
     });
 
-    // Streak logic
+    // Simple localStorage streak
     const streakKey = 'nclex_streak';
     const dateKey = 'nclex_last';
     function updateStreakDisplay(){
@@ -403,28 +451,28 @@
       $('#streakBar').style.width = pct + '%';
       const el = document.getElementById('dashStreak');
       const txt = document.getElementById('dashStreakText');
-      if (el){ el.style.width = pct + '%'; }
-      if (txt){ txt.textContent = streak + ' day' + (streak===1?'':'s'); }
+      if (el) el.style.width = pct + '%';
+      if (txt) txt.textContent = streak + ' day' + (streak===1?'':'s');
     }
     function markStreak(){
       const today = new Date().toDateString();
       const last = localStorage.getItem(dateKey);
       let streak = parseInt(localStorage.getItem(streakKey)||'0',10);
-      if (last === today) return;
-      if (last){
-        const d1 = new Date(last); const d2 = new Date(today);
-        const diff = (d2 - d1) / (1000*60*60*24);
-        streak = (diff === 1) ? streak + 1 : 1;
-      } else { streak = 1; }
-      localStorage.setItem(streakKey, String(streak));
-      localStorage.setItem(dateKey, today);
-      updateStreakDisplay();
+      if (last !== today){
+        if (last){
+          const d1 = new Date(last); const d2 = new Date(today);
+          const diff = (d2 - d1) / (1000*60*60*24);
+          streak = (diff === 1) ? streak + 1 : 1;
+        } else { streak = 1; }
+        localStorage.setItem(streakKey, String(streak));
+        localStorage.setItem(dateKey, today);
+        updateStreakDisplay();
+      }
     }
     $('#dqDone').addEventListener('click', markStreak);
     updateStreakDisplay();
 
-    // Tutor Mode via Worker (fallback to local rules)
-    const WORKER_URL = (window.WORKER_URL || "https://nclex-tutor.YOUR.workers.dev");
+    // ---------- TUTOR MODE (uses your Worker URL) ----------
     const chat = $('#chat');
     function bubble(txt, who='tutor'){
       const div = document.createElement('div');
@@ -433,116 +481,103 @@
       chat.appendChild(div);
       chat.scrollTop = chat.scrollHeight;
     }
-    function tutorIntro(){ bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.'); }
+    function tutorIntro(){
+      bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.');
+    }
     tutorIntro();
 
-    function localEvaluate(text){
-      const t = text.toLowerCase();
-      if (/(airway|abcs|breath|oxygen|spo2|distress)/.test(t)) return 'Yes—airway/breathing first. A client with respiratory distress and low SpO₂ is priority. Then address other urgent issues like hypoglycemia.';
-      if (/(pain|dressing|pressure|stage)/.test(t)) return 'Pain and routine care matter, but they do not outrank unstable breathing. Re‑evaluate using ABCs.';
-      if (/(glucose|hypogly)/.test(t)) return 'Hypoglycemia is urgent, yet ABCs come first. Stabilize breathing/oxygenation, then treat low glucose promptly.';
-      return 'Use ABCs to rank: airway/breathing > circulation > pain/routine. Who will deteriorate fastest without you?';
-    }
-
-    async function callTutor(message, caseContext=""){
-      try{
-        if (!WORKER_URL || /YOUR\.workers\.dev/.test(WORKER_URL)) return null;
-        const r = await fetch(WORKER_URL, {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify({ message, caseContext })
-        });
-        if (!r.ok) return null;
-        const { text } = await r.json();
-        return text || null;
-      }catch(e){ return null; }
+    function evaluateRemote(message){
+      return fetch(window.WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify({ message })
+      }).then(r => r.json());
     }
 
     $('#chatSend').addEventListener('click', async () => {
       const val = $('#chatInput').value.trim(); if (!val) return;
       bubble(val, 'me'); $('#chatInput').value = '';
-      let reply = await callTutor(val);
-      if (!reply) reply = localEvaluate(val);
-      bubble('<strong>Tutor:</strong> ' + reply, 'tutor');
-      setTimeout(()=> bubble('<div class="pearl">Teaching pearl: Rehearse ABCs out loud during high‑stress moments—it anchors your prioritization.</div>', 'tutor'), 250);
+      try {
+        const res = await evaluateRemote(val);
+        const text = res.text || res.error || 'The tutor is unavailable right now.';
+        bubble('<strong>Tutor:</strong> ' + text, 'tutor');
+      } catch (e) {
+        bubble('<strong>Tutor:</strong> Network issue—try again in a moment.', 'tutor');
+      }
     });
 
-    // Cases (unchanged core with small helpers)
+    // ---------- NGN CASES (unchanged) ----------
     const cases = {
-      dka: {
-        name: 'DKA',
-        history: `<ul><li>19‑year‑old with type 1 DM, missed insulin after viral illness</li><li>Complaints: polyuria, polydipsia, abdominal pain, Kussmaul respirations, fruity breath</li></ul>`,
-        labs: `<ul><li>Glucose 520 mg/dL</li><li>pH 7.12, HCO₃ 12 mEq/L</li><li>Serum K⁺ 5.6 mEq/L</li><li>Urine ketones: large</li></ul>`,
-        orders: `<ol><li>0.9% NS bolus 1–2 L, then 250–500 mL/hr</li><li>Regular insulin infusion per protocol</li><li>Replace K⁺ once &lt;5.3 and urine output adequate</li><li>Check BMP/VBG q2–4h; add dextrose when glucose &lt;250</li></ol>`,
-        pearl: 'Fluids first, then insulin. Anticipate potassium shifts as insulin drives K⁺ into cells.'
+      dka: { name:'DKA',
+        history:`<ul><li>19-year-old with type 1 DM, missed insulin after viral illness</li><li>Polyuria, polydipsia, abdo pain, Kussmaul respirations, fruity breath</li></ul>`,
+        labs:`<ul><li>Glucose 520</li><li>pH 7.12, HCO₃ 12 (anion gap)</li><li>Serum K⁺ 5.6 (may fall with insulin)</li><li>Urine ketones: large</li></ul>`,
+        orders:`<ol><li>0.9% NS bolus 1–2 L then 250–500 mL/hr</li><li>Regular insulin infusion</li><li>Replace K⁺ when &lt;5.3 and UOP adequate</li><li>Check BMP/VBG q2–4h; add dextrose when glucose &lt;250</li></ol>`,
+        pearl:'Fluids first, then insulin. Anticipate K⁺ shifts as insulin drives K⁺ into cells.'
       },
-      sepsis: {
-        name: 'Sepsis',
-        history: `<ul><li>72‑year‑old with pneumonia, febrile, confused</li><li>VS: T 39.3°C, HR 124, BP 86/52, RR 26, SpO₂ 90% on 2 L NC</li></ul>`,
-        labs: `<ul><li>Lactate 4.1 mmol/L</li><li>WBC 18 K/µL</li><li>Creatinine trending up</li></ul>`,
-        orders: `<ol><li>Blood cultures ×2 then broad‑spectrum antibiotics within 1 hr</li><li>30 mL/kg isotonic fluid bolus</li><li>Maintain SpO₂ ≥ 94%</li><li>Vasopressors if MAP &lt;65 after fluids</li></ol>`,
-        pearl: 'In suspected sepsis: cultures → antibiotics early + aggressive fluids (30 mL/kg).'
+      sepsis: { name:'Sepsis',
+        history:`<ul><li>72-year-old with pneumonia, febrile, confused</li><li>T 39.3, HR 124, BP 86/52, RR 26, SpO₂ 90% on 2 L</li></ul>`,
+        labs:`<ul><li>Lactate 4.1</li><li>WBC 18 K</li><li>Cr rising</li></ul>`,
+        orders:`<ol><li>Blood cultures ×2 then antibiotics within 1 hr</li><li>30 mL/kg isotonic fluids</li><li>Maintain SpO₂ ≥ 94%</li><li>Vasopressors if MAP &lt;65 after fluids</li></ol>`,
+        pearl:'Cultures → antibiotics early + aggressive fluids (30 mL/kg).'
       },
-      transfusion: {
-        name: 'Transfusion Reaction',
-        history: `<ul><li>Post‑op patient 15 min into PRBCs: fever, chills, back pain, flushing</li></ul>`,
-        labs: `<ul><li>Hemoglobin stable pre‑transfusion</li><li>Direct Coombs pending</li></ul>`,
-        orders: `<ol><li>Stop transfusion, keep IV line with NS</li><li>Notify provider and blood bank</li><li>Recheck patient ID &amp; blood bag</li><li>Send blood bag/tubing to lab; obtain urine sample</li></ol>`,
-        pearl: 'Stop the transfusion immediately—do not discard the bag/tubing; send to lab for analysis.'
+      transfusion: { name:'Transfusion Reaction',
+        history:`<ul><li>15 min into PRBCs: fever, chills, back pain, flushing</li></ul>`,
+        labs:`<ul><li>Direct Coombs pending</li></ul>`,
+        orders:`<ol><li>Stop transfusion; keep IV with NS</li><li>Notify provider & blood bank</li><li>Recheck patient ID & bag</li><li>Send bag/tubing; obtain urine</li></ol>`,
+        pearl:'Stop the transfusion immediately; send bag/tubing to lab.'
       },
-      pe: {
-        name: 'Pulmonary Embolism',
-        history: `<ul><li>Sudden dyspnea, pleuritic chest pain, tachycardia post‑op day 2</li></ul>`,
-        labs: `<ul><li>D‑dimer elevated</li><li>ABG: hypoxemia</li></ul>`,
-        orders: `<ol><li>O₂, raise HOB, rapid assessment</li><li>Notify provider/rapid response</li><li>Heparin infusion per protocol</li><li>Consider CT pulmonary angiography</li></ol>`,
-        pearl: 'Stabilize oxygenation and call for help early. Anticoagulation reduces mortality.'
+      pe: { name:'Pulmonary Embolism',
+        history:`<ul><li>Sudden dyspnea, pleuritic chest pain, tachycardia POD2</li></ul>`,
+        labs:`<ul><li>D-dimer elevated</li><li>ABG: hypoxemia</li></ul>`,
+        orders:`<ol><li>O₂, HOB up, rapid assessment</li><li>Notify provider/rapid response</li><li>Heparin infusion per protocol</li><li>CTPA</li></ol>`,
+        pearl:'Stabilize oxygenation and call for help early. Anticoagulation reduces mortality.'
       },
-      pree: {
-        name: 'Pre‑Eclampsia',
-        history: `<ul><li>32‑week G1P0 with severe headache, visual spots, RUQ pain</li><li>BP 168/112, +3 proteinuria</li></ul>`,
-        labs: `<ul><li>Platelets 92 K/µL</li><li>AST/ALT elevated</li></ul>`,
-        orders: `<ol><li>Magnesium sulfate for seizure prophylaxis</li><li>Antihypertensive (e.g., labetalol or hydralazine)</li><li>Seizure precautions, minimal stimulation</li><li>Assess for HELLP; plan delivery if indicated</li></ol>`,
-        pearl: 'Prevent seizures with magnesium; control BP; evaluate for HELLP and fetal/maternal stability.'
+      pree: { name:'Pre-Eclampsia',
+        history:`<ul><li>32-week G1P0 with severe HA, visual spots, RUQ pain</li><li>BP 168/112, +3 proteinuria</li></ul>`,
+        labs:`<ul><li>Platelets 92 K</li><li>AST/ALT elevated</li></ul>`,
+        orders:`<ol><li>Magnesium sulfate</li><li>Antihypertensive</li><li>Seizure precautions</li><li>Assess for HELLP; plan delivery if indicated</li></ol>`,
+        pearl:'Prevent seizures with magnesium; control BP; evaluate for HELLP.'
       }
     };
     const caseIds = Object.keys(cases);
-    const caseSelector = $('#caseSelector'), tabs = $('#tabs'), panel = $('#panel');
-    let current = caseIds[0], currentTab = 'History';
-    function renderCases(){ caseSelector.innerHTML = ''; caseIds.forEach(id => {
-      const b = document.createElement('button'); b.className = 'pill' + (id===current?' active':''); b.textContent = cases[id].name;
-      b.addEventListener('click', ()=>{ current = id; renderTabs(); renderPanel(); highlightCases(); showPearl(); }); caseSelector.appendChild(b);
-    });}
-    function highlightCases(){ $$('.pill', caseSelector).forEach((el, i)=>{ el.classList.toggle('active', caseIds[i]===current); }); }
-    function renderTabs(){ const names = ['History','Labs','Orders']; tabs.innerHTML = ''; names.forEach(n => {
-      const t = document.createElement('button'); t.className = 'tab' + (n===currentTab?' active':''); t.textContent = n;
-      t.addEventListener('click', ()=>{ currentTab = n; renderTabs(); renderPanel(); }); tabs.appendChild(t);
-    });}
-    function renderPanel(){ const data = cases[current]; panel.innerHTML = data[currentTab.toLowerCase()]; }
-    function showPearl(){ const fb = $('#caseFeedback'); fb.style.display = 'block'; fb.textContent = `Teaching pearl: ${cases[current].pearl}`; }
+    const caseSelector = $('#caseSelector'); const tabs = $('#tabs'); const panel = $('#panel');
+    let current = caseIds[0]; let currentTab = 'History';
+    function renderCases(){ caseSelector.innerHTML=''; caseIds.forEach(id=>{ const b=document.createElement('button'); b.className='pill'+(id===current?' active':''); b.textContent=cases[id].name; b.onclick=()=>{ current=id; renderTabs(); renderPanel(); highlightCases(); showPearl(); }; caseSelector.appendChild(b); }); }
+    function highlightCases(){ $$('.pill', caseSelector).forEach((el,i)=>{ el.classList.toggle('active', caseIds[i]===current); }); }
+    function renderTabs(){ const names=['History','Labs','Orders']; tabs.innerHTML=''; names.forEach(n=>{ const t=document.createElement('button'); t.className='tab'+(n===currentTab?' active':''); t.textContent=n; t.onclick=()=>{ currentTab=n; renderTabs(); renderPanel(); }; tabs.appendChild(t); }); }
+    function renderPanel(){ const data=cases[current]; panel.innerHTML=data[currentTab.toLowerCase()]; }
+    function showPearl(){ const fb=$('#caseFeedback'); fb.style.display='block'; fb.textContent=`Teaching pearl: ${cases[current].pearl}`; }
     renderCases(); renderTabs(); renderPanel(); showPearl();
-    const caseAsk = $('#caseAsk'), caseInput = $('#caseInput');
-    function caseEval(text){ const t = text.toLowerCase(), id = current;
-      if (id==='dka'){ if (/(first|priority|do first|initial)/.test(t)) return 'Start with isotonic fluids to restore perfusion, then insulin infusion. Anticipate potassium shifts and replace as needed.';
-                        if (/(potassium|k\+|k\s)/.test(t)) return 'Serum K⁺ may be high initially; insulin will lower it. Replace when &lt; 5.3 and urine output is adequate.'; }
-      if (id==='sepsis'){ if (/(first|priority|bundle|hour)/.test(t)) return 'Obtain cultures → give broad‑spectrum antibiotics within 1 hour and infuse 30 mL/kg isotonic fluids.';
-                          if (/(map|pressors|norepi)/.test(t)) return 'If MAP stays &lt;65 after fluids, start vasopressors (often norepinephrine) and monitor closely.'; }
-      if (id==='transfusion'){ if (/(first|stop|reaction)/.test(t)) return 'Stop the transfusion immediately, keep IV open with NS, notify provider/blood bank, and send the bag/tubing.'; }
-      if (id==='pe'){ if (/(oxygen|o2|first|priority)/.test(t)) return 'Provide oxygen, raise HOB, call for help, and prepare for anticoagulation (heparin).'; }
-      if (id==='pree'){ if (/(seizure|mag|magnesium|first|priority)/.test(t)) return 'Seizure prophylaxis with magnesium sulfate and BP control are priorities; implement seizure precautions.'; }
-      return 'Consider ABCs and clinical judgment model: recognize cues → analyze → prioritize hypotheses → take action → evaluate outcomes.'; }
-    caseAsk.addEventListener('click', ()=>{ const val = caseInput.value.trim(); if (!val) return; const fb = $('#caseFeedback');
-      fb.style.display = 'block'; fb.textContent = caseEval(val); caseInput.value = ''; });
 
-    // Trial signup demo
-    $('#signupForm')?.addEventListener('submit', (e)=>{
+    // Case Q&A quick keyword matcher
+    $('#caseAsk').addEventListener('click', ()=>{
+      const val = $('#caseInput').value.trim(); if (!val) return;
+      const fb = $('#caseFeedback'); fb.style.display='block';
+      const id=current; const t=val.toLowerCase();
+      let out='Consider ABCs and the Clinical Judgment model.';
+      if (id==='dka'){ if (/(first|priority|initial)/.test(t)) out='Start with isotonic fluids to restore perfusion, then insulin. Watch K⁺ shifts.'; }
+      if (id==='sepsis'){ if (/(first|bundle|hour)/.test(t)) out='Cultures → broad antibiotics within 1 hr + 30 mL/kg isotonic fluids.'; }
+      if (id==='transfusion'){ if (/(first|stop|reaction)/.test(t)) out='Stop the transfusion immediately; keep IV with NS; notify and send bag/tubing.'; }
+      if (id==='pe'){ if (/(oxygen|o2|first|priority)/.test(t)) out='Provide O₂, HOB up, call for help, start anticoag per protocol.'; }
+      if (id==='pree'){ if (/(seizure|mag|magnesium|first|priority)/.test(t)) out='Stop triggers, give magnesium for seizure prophylaxis and control BP.'; }
+      fb.textContent = out;
+      $('#caseInput').value='';
+    });
+
+    // Signup local save
+    $('#signupForm').addEventListener('submit', (e)=>{
       e.preventDefault();
       const email = $('#email').value.trim(); if (!email) return;
-      const key = 'nclex_waitlist'; const arr = JSON.parse(localStorage.getItem(key)||'[]');
-      if (!arr.includes(email)) arr.push(email); localStorage.setItem(key, JSON.stringify(arr));
-      const end = new Date(); end.setDate(end.getDate()+3); localStorage.setItem('nclex_trial_end', end.toISOString());
-      const msg = $('#signupMsg'); msg.style.display = 'block'; msg.textContent = `Welcome! Your free trial runs through ${end.toLocaleDateString()}.`;
-      $('#email').value=''; const trialEnds = $('#trialEnds'); if (trialEnds){ trialEnds.style.display='block'; trialEnds.textContent = `Your trial ends on ${end.toLocaleDateString()}. Enjoy unlimited access until then.`; }
+      const key='nclex_waitlist'; const arr=JSON.parse(localStorage.getItem(key)||'[]');
+      if (!arr.includes(email)) arr.push(email);
+      localStorage.setItem(key, JSON.stringify(arr));
+      const msg=$('#signupMsg'); msg.style.display='block';
+      msg.textContent="Thanks! You're on the list. We'll reach out with early-bird access.";
+      $('#email').value='';
     });
+
+    // Initial load
+    loadDailyFromSupabase();
   </script>
 </body>
 </html>
