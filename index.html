@@ -7,116 +7,111 @@
   <meta name="description" content="Pass the NCLEX with confidence — one smart question a day." />
   <style>
     :root {
-      --bg: #f9fafc;          /* Light Gray */
-      --text: #1f2d3d;        /* Dark Slate */
-      --primary: #2aa6a1;     /* Teal */
-      --primary-600: #238f8b;
-      --accent: #ff6b6b;      /* Coral */
-      --accent-600: #e25858;
-      --muted: #6b7c93;
-      --card: rgba(255,255,255,0.7);
-      --shadow: 0 8px 30px rgba(31, 45, 61, 0.08);
-      --radius: 18px;
+      --bg:#f9fafc; --text:#1f2d3d; --primary:#2aa6a1; --primary-600:#238f8b;
+      --accent:#ff6b6b; --accent-600:#e25858; --muted:#6b7c93;
+      --card:rgba(255,255,255,0.7); --shadow:0 8px 30px rgba(31,45,61,0.08); --radius:18px;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.5;
-    }
-    .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-    header {
-      position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(10px);
-      background: rgba(249,250,252,0.85); border-bottom: 1px solid rgba(31,45,61,0.06);
-    }
-    .nav { display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
-    .brand { display:flex; align-items:center; gap: 10px; font-weight: 800; letter-spacing: 0.2px; }
-    .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), #53cbc6);
-            display:grid; place-items:center; color:white; font-weight:900; box-shadow: var(--shadow); }
-    nav a { color: var(--muted); text-decoration: none; margin: 0 10px; font-weight: 600; }
-    nav a:hover { color: var(--text); }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.5}
+    .container{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(249,250,252,0.85);border-bottom:1px solid rgba(31,45,61,0.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#53cbc6);
+      display:grid;place-items:center;color:white;font-weight:900;box-shadow:var(--shadow)}
+    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600}
+    nav a:hover{color:var(--text)}
+    .hero{padding:56px 0 28px}
+    .hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px}
+    .hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);margin:0 0 24px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px}
 
-    .hero { padding: 56px 0 28px; }
-    .hero h1 { font-size: clamp(28px, 5vw, 44px); margin: 0 0 10px; }
-    .hero p { font-size: clamp(16px, 2vw, 20px); color: var(--muted); margin: 0 0 24px; }
-    .cta-row { display:flex; flex-wrap:wrap; gap: 12px; }
+    .btn{appearance:none;border:0;padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer;
+      transition:transform .08s ease,box-shadow .2s ease,filter .2s ease}
+    .btn:hover{transform:translateY(-1px);filter:saturate(1.05)}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),#53cbc6);color:white;box-shadow:var(--shadow)}
+    .btn-accent{background:linear-gradient(135deg,var(--accent),#ffa3a3);color:white;box-shadow:var(--shadow)}
+    .btn-ghost{background:transparent;border:2px solid rgba(31,45,61,0.15);color:var(--text)}
 
-    .btn { appearance:none; border:0; padding: 12px 18px; border-radius: 999px; font-weight: 700; cursor:pointer; transition: transform .08s ease, box-shadow .2s ease, filter .2s ease; }
-    .btn:active { transform: translateY(0); }
-    .btn:hover { transform: translateY(-1px); filter: saturate(1.05); }
-    .btn-primary { background: linear-gradient(135deg, var(--primary), #53cbc6); color:white; box-shadow: var(--shadow); }
-    .btn-accent  { background: linear-gradient(135deg, var(--accent), #ffa3a3); color:white; box-shadow: var(--shadow); }
-    .btn-ghost   { background: transparent; border: 2px solid rgba(31,45,61,0.15); color: var(--text); }
+    section{padding:36px 0}
+    .card{background:var(--card);border:1px solid rgba(31,45,61,0.08);border-radius:var(--radius);
+      box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(12px)}
+    .pad{padding:20px}
+    .grid{display:grid;gap:16px}
+    @media (min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
 
-    section { padding: 36px 0; }
-    .card { background: var(--card); border: 1px solid rgba(31,45,61,0.08); border-radius: var(--radius); box-shadow: var(--shadow);
-            backdrop-filter: saturate(180%) blur(12px); }
-    .pad { padding: 20px; }
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(42,166,161,0.12);
+      color:var(--primary-600);font-weight:700;font-size:12px;letter-spacing:.3px}
+    .choices{display:grid;gap:10px;margin:12px 0}
+    .choice{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;border:1px solid rgba(31,45,61,0.08);background:white}
+    .rationale{display:none;margin-top:10px;color:#0f5132;background:#d1e7dd;border:1px solid #badbcc;padding:12px;border-radius:12px}
+    .rationale.show{display:block}
+    .streak{margin-top:12px}
+    .bar{height:10px;background:rgba(31,45,61,0.08);border-radius:999px;overflow:hidden}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ff9c9c);width:0%;transition:width .5s ease}
 
-    .grid { display:grid; gap: 16px; }
-    @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+    .chat{height:340px;overflow:auto;padding:12px;background:white;border-radius:14px;border:1px solid rgba(31,45,61,0.08)}
+    .bubble{max-width:78%;padding:10px 12px;border-radius:16px;margin:8px 0;box-shadow:var(--shadow)}
+    .me{background:#eef2f7;margin-left:auto;border-bottom-right-radius:6px}
+    .tutor{background:#e7fbf9;border-left:3px solid var(--primary);border-bottom-left-radius:6px}
+    .pearl{font-size:13px;color:#0f5132;background:#d1e7dd;border-left:3px solid #0f5132}
+    .chat-row{display:flex;gap:10px;margin-top:10px}
+    .chat-row input{flex:1;padding:12px 14px;border-radius:999px;border:1px solid rgba(31,45,61,0.15)}
 
-    .badge { display:inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(42,166,161,0.12); color: var(--primary-600); font-weight: 700; font-size: 12px; letter-spacing: .3px; }
-    .choices { display:grid; gap: 10px; margin: 12px 0; }
-    .choice { display:flex; gap:10px; align-items:flex-start; padding: 10px; border-radius: 12px; border: 1px solid rgba(31,45,61,0.08); background: white; }
-    .rationale { display:none; margin-top: 10px; color: #0f5132; background: #d1e7dd; border: 1px solid #badbcc; padding: 12px; border-radius: 12px; }
-    .rationale.show { display:block; }
+    .case-selector{display:flex;gap:8px;overflow:auto;padding-bottom:8px}
+    .pill{white-space:nowrap;border-radius:999px;padding:8px 12px;border:1px solid rgba(31,45,61,0.12);background:white;cursor:pointer;font-weight:700}
+    .pill.active{background:linear-gradient(135deg,var(--primary),#69d9d3);color:white;border-color:transparent}
+    .tabs{display:flex;gap:6px;margin-top:10px}
+    .tab{flex:1;text-align:center;background:white;border:1px solid rgba(31,45,61,0.12);padding:10px;border-radius:12px;cursor:pointer;font-weight:700}
+    .tab.active{background:#e6fffd;border-color:var(--primary)}
+    .ngn-panels{background:white;border:1px solid rgba(31,45,61,0.12);border-radius:14px;padding:14px;min-height:160px}
 
-    .streak { margin-top: 12px; }
-    .bar { height: 10px; background: rgba(31,45,61,0.08); border-radius: 999px; overflow: hidden; }
-    .bar > span { display:block; height:100%; background: linear-gradient(90deg, var(--accent), #ff9c9c); width: 0%; transition: width .5s ease; }
+    .how{display:grid;gap:14px;grid-template-columns:1fr}
+    .how .step{display:flex;gap:12px;align-items:flex-start}
+    .icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#e6fffd;color:var(--primary-600);font-weight:900}
+    @media (min-width:700px){.how{grid-template-columns:repeat(3,1fr)}}
 
-    .chat { height: 340px; overflow:auto; padding: 12px; background: white; border-radius: 14px; border: 1px solid rgba(31,45,61,0.08); }
-    .bubble { max-width: 78%; padding: 10px 12px; border-radius: 16px; margin: 8px 0; box-shadow: var(--shadow); }
-    .me    { background: #eef2f7; margin-left: auto; border-bottom-right-radius: 6px; }
-    .tutor { background: #e7fbf9; border-left: 3px solid var(--primary); border-bottom-left-radius: 6px; }
-    .pearl { font-size: 13px; color: #0f5132; background: #d1e7dd; border-left: 3px solid #0f5132; }
-    .chat-row { display:flex; gap: 10px; margin-top: 10px; }
-    .chat-row input { flex:1; padding: 12px 14px; border-radius: 999px; border: 1px solid rgba(31,45,61,0.15); }
+    .pricing{display:grid;gap:16px;grid-template-columns:1fr}
+    @media (min-width:900px){.pricing{grid-template-columns:repeat(3,1fr)}}
+    .price-tag{font-size:28px;font-weight:900}
+    .featured{border:2px solid var(--primary);position:relative}
+    .ribbon{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--primary),#69d9d3);color:white;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px}
 
-    .case-selector { display:flex; gap: 8px; overflow:auto; padding-bottom: 8px; }
-    .pill { white-space: nowrap; border-radius: 999px; padding: 8px 12px; border: 1px solid rgba(31,45,61,0.12); background:white; cursor:pointer; font-weight:700; }
-    .pill.active { background: linear-gradient(135deg, var(--primary), #69d9d3); color:white; border-color: transparent; }
+    footer{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+    .muted{color:var(--muted)} .center{text-align:center}
+    .mt-8{margin-top:8px}.mt-16{margin-top:16px}.mt-24{margin-top:24px}.mb-0{margin-bottom:0}
 
-    .tabs { display:flex; gap: 6px; margin-top: 10px; }
-    .tab { flex: 1; text-align: center; background: white; border:1px solid rgba(31,45,61,0.12); padding: 10px; border-radius: 12px; cursor:pointer; font-weight:700; }
-    .tab.active { background: #e6fffd; border-color: var(--primary); }
-    .ngn-panels { background:white; border:1px solid rgba(31,45,61,0.12); border-radius: 14px; padding: 14px; min-height: 160px; }
+    .dashboard{display:grid;gap:16px;grid-template-columns:1fr}
+    @media (min-width:900px){.dashboard{grid-template-columns:1.2fr 1fr}}
+    .ring{width:140px;height:140px;border-radius:50%;background:conic-gradient(var(--primary) calc(var(--p,0)*1%),rgba(31,45,61,0.08) 0);display:grid;place-items:center;margin:auto;box-shadow:var(--shadow)}
+    .ring-inner{width:108px;height:108px;border-radius:50%;background:white;display:grid;place-items:center;border:1px solid rgba(31,45,61,0.08)}
+    .mini-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    .tile{background:white;border:1px solid rgba(31,45,61,0.08);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+    .tile h4{margin:6px 0 4px} .tile small{color:var(--muted)}
 
-    .how { display:grid; gap: 14px; grid-template-columns: 1fr; }
-    .how .step { display:flex; gap: 12px; align-items:flex-start; }
-    .icon { width: 40px; height: 40px; border-radius: 12px; display:grid; place-items:center; background: #e6fffd; color: var(--primary-600); font-weight: 900; }
-    @media (min-width: 700px){ .how { grid-template-columns: repeat(3,1fr); } }
-
-    .pricing { display:grid; gap: 16px; grid-template-columns: 1fr; }
-    @media (min-width: 900px){ .pricing { grid-template-columns: repeat(3,1fr);} }
-    .price-tag { font-size: 28px; font-weight: 900; }
-    .featured { border:2px solid var(--primary); position:relative; }
-    .ribbon { position:absolute; top:10px; right:10px; background: linear-gradient(135deg, var(--primary), #69d9d3); color:white; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px; }
-
-    footer { padding: 40px 0; text-align:center; color: var(--muted); font-size: 14px; }
-
-    .muted { color: var(--muted); }
-    .center { text-align:center; }
-    .mt-8 { margin-top: 8px; } .mt-16{ margin-top:16px;} .mt-24{ margin-top:24px;} .mb-0{ margin-bottom:0; }
-
-    .dashboard { display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media (min-width: 900px){ .dashboard { grid-template-columns: 1.2fr 1fr; } }
-    .ring { width: 140px; height: 140px; border-radius: 50%; background:
-      conic-gradient(var(--primary) calc(var(--p,0)*1%), rgba(31,45,61,0.08) 0);
-      display:grid; place-items:center; margin:auto; box-shadow: var(--shadow); }
-    .ring-inner { width: 108px; height:108px; border-radius:50%; background:white; display:grid; place-items:center; border:1px solid rgba(31,45,61,0.08); }
-    .mini-grid { display:grid; gap:12px; grid-template-columns: repeat(2,1fr); }
-    .tile { background:white; border:1px solid rgba(31,45,61,0.08); border-radius: 14px; padding:14px; box-shadow: var(--shadow); }
-    .tile h4 { margin:6px 0 4px; }
-    .tile small { color: var(--muted); }
+    /* AUTH MODAL */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal.show{display:flex}
+    .sheet{max-width:560px;width:100%;background:white;border-radius:16px;border:1px solid rgba(31,45,61,.08);box-shadow:var(--shadow)}
+    .sheet .head{padding:16px 18px;border-bottom:1px solid rgba(31,45,61,.08);display:flex;justify-content:space-between;align-items:center}
+    .sheet .body{padding:18px}
+    .x{border:0;background:transparent;font-size:18px;cursor:pointer}
+    .tabs-a{display:flex;gap:8px}
+    .tabs-a button{flex:1;border:1px solid rgba(31,45,61,.12);background:#f5f7fb;padding:10px;border-radius:10px;font-weight:800;cursor:pointer}
+    .tabs-a button.active{background:#e6fffd;border-color:var(--primary)}
+    .field{display:flex;flex-direction:column;margin-top:10px}
+    .field input{padding:12px 14px;border-radius:10px;border:1px solid rgba(31,45,61,.15)}
+    .help{font-size:12px;color:var(--muted)}
+    .right{margin-left:auto}
+    .account-pill{display:none;align-items:center;gap:8px}
+    .account-pill.show{display:flex}
+    .avatar{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--primary),#69d9d3);color:white;display:grid;place-items:center;font-weight:900}
   </style>
 </head>
 <body>
-  <!-- Simple inline config (edit the ANON key only) -->
+  <!-- Inline config (EDIT the ANON key below) + Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
     window.SUPABASE_URL = "https://awfhdinvmhalhdrecxla.supabase.co";
@@ -132,7 +127,12 @@
         <a href="#tutor">Tutor Mode</a>
         <a href="#cases">NGN Cases</a>
         <a href="#pricing">Pricing</a>
-        <a href="#signup" class="btn btn-primary" style="padding:8px 14px">Get Pro</a>
+        <button id="openAuth" class="btn btn-ghost">Log in / Register</button>
+        <div id="accountPill" class="account-pill">
+          <div class="avatar" id="acctAvatar">U</div>
+          <div id="acctEmail" class="muted" style="font-size:13px"></div>
+          <button id="logout" class="btn btn-ghost" style="padding:8px 12px">Sign out</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -152,7 +152,7 @@
           </div>
         </div>
 
-        <!-- Daily Question Card -->
+        <!-- Daily Question -->
         <div class="card pad" id="daily">
           <div class="badge">Preview</div>
           <h3 class="mb-0">Daily Question</h3>
@@ -182,10 +182,8 @@
     <section id="dashboard">
       <div class="container dashboard">
         <div class="card pad">
-          <div class="grid" style="grid-template-columns: 160px 1fr; align-items:center; gap:16px;">
-            <div>
-              <div class="ring" style="--p:72"><div class="ring-inner"><div class="center"><strong>72%</strong><div class="muted" style="font-size:12px">Mastery</div></div></div></div>
-            </div>
+          <div class="grid" style="grid-template-columns:160px 1fr;align-items:center;gap:16px;">
+            <div><div class="ring" style="--p:72"><div class="ring-inner"><div class="center"><strong>72%</strong><div class="muted" style="font-size:12px">Mastery</div></div></div></div></div>
             <div>
               <h3 class="mb-0">Today’s Boost</h3>
               <p class="muted">1 prioritized question • 1 micro-lesson • 1 minute recap</p>
@@ -231,18 +229,9 @@
       <div class="container">
         <h2 class="center">How it works</h2>
         <div class="how mt-16">
-          <div class="card pad step">
-            <div class="icon">1</div>
-            <div><h4>One smart Q/day</h4><p class="muted">High-yield items mapped to the NCLEX test plan with concise rationales. Build momentum one bite at a time.</p></div>
-          </div>
-          <div class="card pad step">
-            <div class="icon">2</div>
-            <div><h4>Adaptive Tutor</h4><p class="muted">Chat through prioritization, pharm, safety, and more. The tutor asks, adapts, and teaches with pearls.</p></div>
-          </div>
-          <div class="card pad step">
-            <div class="icon">3</div>
-            <div><h4>Next Gen Case Studies</h4><p class="muted">Unfolding cases with <strong>History / Labs / Orders</strong> tabs plus guided Q&A for clinical judgment practice.</p></div>
-          </div>
+          <div class="card pad step"><div class="icon">1</div><div><h4>One smart Q/day</h4><p class="muted">High-yield items mapped to the NCLEX test plan with concise rationales. Build momentum one bite at a time.</p></div></div>
+          <div class="card pad step"><div class="icon">2</div><div><h4>Adaptive Tutor</h4><p class="muted">Chat through prioritization, pharm, safety, and more. The tutor asks, adapts, and teaches with pearls.</p></div></div>
+          <div class="card pad step"><div class="icon">3</div><div><h4>Next Gen Case Studies</h4><p class="muted">Unfolding cases with <strong>History / Labs / Orders</strong> tabs plus guided Q&A for clinical judgment practice.</p></div></div>
         </div>
       </div>
     </section>
@@ -252,11 +241,12 @@
       <div class="container grid grid-2">
         <div>
           <h2 class="mb-0">Tutor Mode</h2>
+          <button class="btn btn-ghost" id="useLatest" style="margin:10px 0">Tutor: Use daily question</button>
           <p class="muted">Conversation-style practice: the tutor asks ⇒ you think aloud ⇒ instant feedback + teaching pearl.</p>
           <div class="card pad">
             <div id="chat" class="chat"></div>
             <div class="chat-row">
-              <input id="chatInput" placeholder="Type your answer… (e.g., 'Assess airway first')"/>
+              <input id="chatInput" placeholder="Type your answer… (e.g., 'Assess airway first')" />
               <button class="btn btn-primary" id="chatSend">Send</button>
             </div>
           </div>
@@ -274,7 +264,7 @@
       </div>
     </section>
 
-    <!-- NGN Case Studies -->
+    <!-- NGN Cases -->
     <section id="cases">
       <div class="container">
         <h2 class="center">NGN Case Studies</h2>
@@ -286,7 +276,7 @@
             <input id="caseInput" placeholder="Ask about this case (e.g., 'What do I do first?')" />
             <button class="btn btn-accent" id="caseAsk">Ask</button>
           </div>
-          <div id="caseFeedback" class="pearl bubble" style="display:none; margin-top:10px"></div>
+          <div id="caseFeedback" class="pearl bubble" style="display:none;margin-top:10px"></div>
         </div>
       </div>
     </section>
@@ -344,7 +334,7 @@
           <p class="muted">Be first to know when full Pro launches. We’ll send early-bird pricing and a bonus NGN pack.</p>
           <form id="signupForm" class="card pad">
             <label for="email"><strong>Email</strong></label>
-            <input id="email" type="email" required placeholder="you@example.com" style="margin-top:6px; padding:12px 14px; border: 1px solid rgba(31,45,61,0.15); border-radius: 10px; width:100%" />
+            <input id="email" type="email" required placeholder="you@example.com" style="margin-top:6px;padding:12px 14px;border:1px solid rgba(31,45,61,0.15);border-radius:10px;width:100%" />
             <button class="btn btn-primary mt-16" type="submit">Save my spot</button>
             <p id="signupMsg" class="muted mt-16" style="display:none"></p>
           </form>
@@ -369,214 +359,251 @@
     </div>
   </footer>
 
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="modal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="head">
+        <strong id="authTitle">Welcome back</strong>
+        <button class="x" id="authClose" aria-label="Close">✕</button>
+      </div>
+      <div class="body">
+        <div class="tabs-a">
+          <button id="tabLogin" class="active" type="button">Log in</button>
+          <button id="tabRegister" type="button">Register</button>
+        </div>
+
+        <form id="loginForm" class="mt-16">
+          <div class="field">
+            <label>Email</label>
+            <input id="loginEmail" type="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input id="loginPass" type="password" required placeholder="••••••••">
+          </div>
+          <div class="mt-16" style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" type="submit">Log in</button>
+            <span id="loginMsg" class="help"></span>
+          </div>
+        </form>
+
+        <form id="regForm" class="mt-16" style="display:none">
+          <div class="field">
+            <label>Email</label>
+            <input id="regEmail" type="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input id="regPass" type="password" required placeholder="At least 6 characters">
+          </div>
+          <div class="field">
+            <label>Confirm password</label>
+            <input id="regPass2" type="password" required placeholder="Repeat password">
+          </div>
+          <div class="mt-16" style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" type="submit">Create account</button>
+            <span id="regMsg" class="help"></span>
+          </div>
+          <p class="help mt-8">You may receive a confirmation email depending on your Supabase Auth settings.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ---------- Small helpers ----------
+    // ---------- Helpers ----------
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
     $('#year').textContent = new Date().getFullYear();
 
-    // ---------- DAILY QUESTION (now dynamic from Supabase, with fallback) ----------
+    // ---------- Supabase Client (for Auth + Questions) ----------
+    const supabase = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+
+    // ---------- DAILY QUESTION (Supabase) ----------
     let CORRECT = 'B';
     window._lastRationale = 'Airway takes priority. Signs of respiratory distress and hypoxemia demand immediate assessment (ABCs).';
 
     async function loadDailyFromSupabase(){
-      if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) return; // config not set
-
-      try {
-        const url = `${window.SUPABASE_URL}/rest/v1/questions` +
-                    `?select=stem,choices,correct,rationale,category,created_at` +
-                    `&order=created_at.desc&limit=1`;
-        const res = await fetch(url, {
-          headers: {
-            apikey: window.SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${window.SUPABASE_ANON_KEY}`
-          }
-        });
-        if (!res.ok) throw new Error('Supabase returned ' + res.status);
+      try{
+        const url = `${window.SUPABASE_URL}/rest/v1/questions?select=stem,choices,correct,rationale,category,created_at&order=created_at.desc&limit=1`;
+        const res = await fetch(url, { headers:{ apikey:window.SUPABASE_ANON_KEY, Authorization:`Bearer ${window.SUPABASE_ANON_KEY}` }});
+        if (!res.ok) throw new Error('Supabase ' + res.status);
         const rows = await res.json();
-        const q = rows[0];
-        if (!q) return; // table empty → keep fallback
-
-        // Category subtitle
-        const sub = document.querySelector('#daily .muted');
-        if (sub) sub.textContent = q.category || 'Daily Question';
-
-        // Stem
-        const stemP = document.querySelector('#dq p');
-        if (stemP) stemP.innerHTML = `<strong>Scenario:</strong> ${q.stem}`;
-
-        // Choices (support array of strings OR [{text}])
+        const q = rows[0]; if (!q) return;
+        const sub = document.querySelector('#daily .muted'); if (sub) sub.textContent = q.category || 'Daily Question';
+        const stemP = document.querySelector('#dq p'); if (stemP) stemP.innerHTML = `<strong>Scenario:</strong> ${q.stem}`;
         const choicesEl = $('#dqChoices');
         if (choicesEl && Array.isArray(q.choices)) {
           const letters = ['A','B','C','D','E','F'];
-          choicesEl.innerHTML = q.choices.map((c, i) => {
-            const txt = typeof c === 'string' ? c : c.text;
-            const L = letters[i];
+          choicesEl.innerHTML = q.choices.map((c,i) => {
+            const txt = typeof c === 'string' ? c : c.text; const L = letters[i];
             return `<label class="choice"><input type="radio" name="dq" value="${L}"> ${L}. ${txt}</label>`;
           }).join('');
         }
-
-        CORRECT = (q.correct || 'A').trim().toUpperCase();
+        CORRECT = (q.correct||'A').trim().toUpperCase();
         window._lastRationale = q.rationale || '';
-
-        // Reset any previous selection/rationale
-        const r = $('#dqRat'); r.classList.remove('show'); r.textContent = '';
-        $$('input[name="dq"]').forEach(i => i.checked = false);
-      } catch (e) {
-        console.warn('Supabase load failed:', e);
-      }
+        window._latestQuestion = { ...q, correct: CORRECT };
+        const r = $('#dqRat'); r.classList.remove('show'); r.textContent='';
+        $$('input[name="dq"]').forEach(i=>i.checked=false);
+      }catch(e){ console.warn('Supabase load failed:', e); }
     }
 
-    // Check answer handler (uses dynamic CORRECT + rationale)
     $('#dqCheck').addEventListener('click', () => {
       const sel = document.querySelector('input[name="dq"]:checked');
       const r = $('#dqRat');
       if (!sel) { r.textContent = 'Please select an answer.'; r.classList.add('show'); return; }
       const correct = sel.value === CORRECT;
       r.classList.add('show');
-      if (!correct) {
-        r.innerHTML = `<strong>Not quite.</strong> ${window._lastRationale || 'Review ABCs—airway/breathing outrank circulation and pain.'}`;
-      } else {
-        r.innerHTML = `<strong>Answer: ${CORRECT}.</strong> ${window._lastRationale || ''}`;
-      }
+      if (!correct) r.innerHTML = `<strong>Not quite.</strong> ${window._lastRationale || 'Review ABCs—airway/breathing outrank circulation and pain.'}`;
+      else r.innerHTML = `<strong>Answer: ${CORRECT}.</strong> ${window._lastRationale || ''}`;
     });
 
-    // Simple localStorage streak
-    const streakKey = 'nclex_streak';
-    const dateKey = 'nclex_last';
+    // ---------- Streak ----------
+    const streakKey='nclex_streak', dateKey='nclex_last';
     function updateStreakDisplay(){
-      const streak = parseInt(localStorage.getItem(streakKey)||'0',10);
-      $('#streakText').textContent = `${streak} day${streak===1?'':'s'}`;
-      const pct = Math.min(100, (streak%7)/7*100);
-      $('#streakBar').style.width = pct + '%';
-      const el = document.getElementById('dashStreak');
-      const txt = document.getElementById('dashStreakText');
-      if (el) el.style.width = pct + '%';
-      if (txt) txt.textContent = streak + ' day' + (streak===1?'':'s');
+      const s = parseInt(localStorage.getItem(streakKey)||'0',10);
+      $('#streakText').textContent = `${s} day${s===1?'':'s'}`;
+      const pct = Math.min(100, (s%7)/7*100); $('#streakBar').style.width = pct + '%';
+      const el = $('#dashStreak'); const txt = $('#dashStreakText'); if (el) el.style.width=pct+'%'; if (txt) txt.textContent = s + ' day' + (s===1?'':'s');
     }
     function markStreak(){
-      const today = new Date().toDateString();
-      const last = localStorage.getItem(dateKey);
-      let streak = parseInt(localStorage.getItem(streakKey)||'0',10);
-      if (last !== today){
-        if (last){
-          const d1 = new Date(last); const d2 = new Date(today);
-          const diff = (d2 - d1) / (1000*60*60*24);
-          streak = (diff === 1) ? streak + 1 : 1;
-        } else { streak = 1; }
-        localStorage.setItem(streakKey, String(streak));
-        localStorage.setItem(dateKey, today);
-        updateStreakDisplay();
-      }
+      const today=new Date().toDateString(); const last=localStorage.getItem(dateKey);
+      let s=parseInt(localStorage.getItem(streakKey)||'0',10);
+      if (last!==today){ if (last){ const d=(new Date(today)-new Date(last))/(1000*60*60*24); s = (d===1)?s+1:1; } else s=1;
+        localStorage.setItem(streakKey,String(s)); localStorage.setItem(dateKey,today); updateStreakDisplay(); }
     }
-    $('#dqDone').addEventListener('click', markStreak);
-    updateStreakDisplay();
+    $('#dqDone').addEventListener('click', markStreak); updateStreakDisplay();
 
-    // ---------- TUTOR MODE (uses your Worker URL) ----------
+    // ---------- Tutor (Worker) ----------
     const chat = $('#chat');
-    function bubble(txt, who='tutor'){
-      const div = document.createElement('div');
-      div.className = 'bubble ' + who;
-      div.innerHTML = txt;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    }
-    function tutorIntro(){
-      bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.');
-    }
-    tutorIntro();
+    function bubble(txt, who='tutor'){ const d=document.createElement('div'); d.className='bubble '+who; d.innerHTML=txt; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; }
+    bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.');
 
     function evaluateRemote(message){
-      return fetch(window.WORKER_URL, {
-        method: "POST",
-        headers: { "Content-Type":"application/json" },
-        body: JSON.stringify({ message })
-      }).then(r => r.json());
+      return fetch(window.WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message })}).then(r=>r.json());
     }
 
-    $('#chatSend').addEventListener('click', async () => {
-      const val = $('#chatInput').value.trim(); if (!val) return;
-      bubble(val, 'me'); $('#chatInput').value = '';
-      try {
-        const res = await evaluateRemote(val);
-        const text = res.text || res.error || 'The tutor is unavailable right now.';
-        bubble('<strong>Tutor:</strong> ' + text, 'tutor');
-      } catch (e) {
-        bubble('<strong>Tutor:</strong> Network issue—try again in a moment.', 'tutor');
-      }
+    // Ask latest DB question in Tutor, grade by letter
+    $('#useLatest').addEventListener('click', ()=>{
+      if (!window._latestQuestion){ alert('No daily question loaded yet. Refresh and try again.'); return; }
+      const q=window._latestQuestion; const letters=['A','B','C','D','E','F'];
+      const opts=(q.choices||[]).map((c,i)=>`${letters[i]}. ${typeof c==='string'?c:c.text}`).join('<br>');
+      bubble(`<strong>Tutor:</strong> ${q.stem}<br><br>${opts}<br><em>Reply with the letter (A, B, C, …) and your reasoning.</em>`,'tutor');
+      window._expectingLetter=true;
     });
 
-    // ---------- NGN CASES (unchanged) ----------
+    $('#chatSend').addEventListener('click', async ()=>{
+      const val=$('#chatInput').value.trim(); if(!val) return; bubble(val,'me'); $('#chatInput').value='';
+      const ans=val.trim().toUpperCase();
+      if (window._expectingLetter && /^[A-F]$/.test(ans) && window._latestQuestion){
+        const correctLetter=(window._latestQuestion.correct||'A').toUpperCase();
+        const correct=ans===correctLetter; const rationale=window._latestQuestion.rationale||'';
+        bubble('<strong>Tutor:</strong> ' + (correct? '✅ Correct!' : `❌ Not quite. The best answer is <strong>${correctLetter}</strong>.`) + (rationale? ` ${rationale}`:''),'tutor');
+        window._expectingLetter=false; return;
+      }
+      try{ const res=await evaluateRemote(val); bubble('<strong>Tutor:</strong> ' + (res.text||res.error||'The tutor is unavailable right now.'),'tutor'); }
+      catch{ bubble('<strong>Tutor:</strong> Network issue—try again in a moment.','tutor'); }
+    });
+
+    // ---------- NGN Cases (unchanged core) ----------
     const cases = {
-      dka: { name:'DKA',
-        history:`<ul><li>19-year-old with type 1 DM, missed insulin after viral illness</li><li>Polyuria, polydipsia, abdo pain, Kussmaul respirations, fruity breath</li></ul>`,
-        labs:`<ul><li>Glucose 520</li><li>pH 7.12, HCO₃ 12 (anion gap)</li><li>Serum K⁺ 5.6 (may fall with insulin)</li><li>Urine ketones: large</li></ul>`,
+      dka:{name:'DKA',history:`<ul><li>19-year-old with type 1 DM, missed insulin after viral illness</li><li>Polyuria, polydipsia, abdo pain, Kussmaul respirations, fruity breath</li></ul>`,
+        labs:`<ul><li>Glucose 520</li><li>pH 7.12, HCO₃ 12</li><li>Serum K⁺ 5.6 (may fall with insulin)</li><li>Urine ketones: large</li></ul>`,
         orders:`<ol><li>0.9% NS bolus 1–2 L then 250–500 mL/hr</li><li>Regular insulin infusion</li><li>Replace K⁺ when &lt;5.3 and UOP adequate</li><li>Check BMP/VBG q2–4h; add dextrose when glucose &lt;250</li></ol>`,
-        pearl:'Fluids first, then insulin. Anticipate K⁺ shifts as insulin drives K⁺ into cells.'
-      },
-      sepsis: { name:'Sepsis',
-        history:`<ul><li>72-year-old with pneumonia, febrile, confused</li><li>T 39.3, HR 124, BP 86/52, RR 26, SpO₂ 90% on 2 L</li></ul>`,
+        pearl:'Fluids first, then insulin. Anticipate K⁺ shifts.'},
+      sepsis:{name:'Sepsis',history:`<ul><li>72-year-old with pneumonia, febrile, confused</li><li>T 39.3, HR 124, BP 86/52, RR 26, SpO₂ 90% on 2 L</li></ul>`,
         labs:`<ul><li>Lactate 4.1</li><li>WBC 18 K</li><li>Cr rising</li></ul>`,
         orders:`<ol><li>Blood cultures ×2 then antibiotics within 1 hr</li><li>30 mL/kg isotonic fluids</li><li>Maintain SpO₂ ≥ 94%</li><li>Vasopressors if MAP &lt;65 after fluids</li></ol>`,
-        pearl:'Cultures → antibiotics early + aggressive fluids (30 mL/kg).'
-      },
-      transfusion: { name:'Transfusion Reaction',
-        history:`<ul><li>15 min into PRBCs: fever, chills, back pain, flushing</li></ul>`,
+        pearl:'Cultures → antibiotics early + aggressive fluids (30 mL/kg).'},
+      transfusion:{name:'Transfusion Reaction',history:`<ul><li>15 min into PRBCs: fever, chills, back pain, flushing</li></ul>`,
         labs:`<ul><li>Direct Coombs pending</li></ul>`,
         orders:`<ol><li>Stop transfusion; keep IV with NS</li><li>Notify provider & blood bank</li><li>Recheck patient ID & bag</li><li>Send bag/tubing; obtain urine</li></ol>`,
-        pearl:'Stop the transfusion immediately; send bag/tubing to lab.'
-      },
-      pe: { name:'Pulmonary Embolism',
-        history:`<ul><li>Sudden dyspnea, pleuritic chest pain, tachycardia POD2</li></ul>`,
+        pearl:'Stop transfusion immediately; send bag/tubing to lab.'},
+      pe:{name:'Pulmonary Embolism',history:`<ul><li>Sudden dyspnea, pleuritic chest pain, tachycardia POD2</li></ul>`,
         labs:`<ul><li>D-dimer elevated</li><li>ABG: hypoxemia</li></ul>`,
         orders:`<ol><li>O₂, HOB up, rapid assessment</li><li>Notify provider/rapid response</li><li>Heparin infusion per protocol</li><li>CTPA</li></ol>`,
-        pearl:'Stabilize oxygenation and call for help early. Anticoagulation reduces mortality.'
-      },
-      pree: { name:'Pre-Eclampsia',
-        history:`<ul><li>32-week G1P0 with severe HA, visual spots, RUQ pain</li><li>BP 168/112, +3 proteinuria</li></ul>`,
+        pearl:'Stabilize oxygenation and call for help early.'},
+      pree:{name:'Pre-Eclampsia',history:`<ul><li>32-week G1P0 with severe HA, visual spots, RUQ pain</li><li>BP 168/112, +3 proteinuria</li></ul>`,
         labs:`<ul><li>Platelets 92 K</li><li>AST/ALT elevated</li></ul>`,
         orders:`<ol><li>Magnesium sulfate</li><li>Antihypertensive</li><li>Seizure precautions</li><li>Assess for HELLP; plan delivery if indicated</li></ol>`,
-        pearl:'Prevent seizures with magnesium; control BP; evaluate for HELLP.'
-      }
+        pearl:'Prevent seizures with magnesium; control BP; evaluate for HELLP.'}
     };
-    const caseIds = Object.keys(cases);
-    const caseSelector = $('#caseSelector'); const tabs = $('#tabs'); const panel = $('#panel');
-    let current = caseIds[0]; let currentTab = 'History';
-    function renderCases(){ caseSelector.innerHTML=''; caseIds.forEach(id=>{ const b=document.createElement('button'); b.className='pill'+(id===current?' active':''); b.textContent=cases[id].name; b.onclick=()=>{ current=id; renderTabs(); renderPanel(); highlightCases(); showPearl(); }; caseSelector.appendChild(b); }); }
-    function highlightCases(){ $$('.pill', caseSelector).forEach((el,i)=>{ el.classList.toggle('active', caseIds[i]===current); }); }
-    function renderTabs(){ const names=['History','Labs','Orders']; tabs.innerHTML=''; names.forEach(n=>{ const t=document.createElement('button'); t.className='tab'+(n===currentTab?' active':''); t.textContent=n; t.onclick=()=>{ currentTab=n; renderTabs(); renderPanel(); }; tabs.appendChild(t); }); }
-    function renderPanel(){ const data=cases[current]; panel.innerHTML=data[currentTab.toLowerCase()]; }
+    const caseIds=Object.keys(cases); const caseSelector=$('#caseSelector'); const tabs=$('#tabs'); const panel=$('#panel');
+    let current=caseIds[0]; let currentTab='History';
+    function renderCases(){ caseSelector.innerHTML=''; caseIds.forEach(id=>{ const b=document.createElement('button'); b.className='pill'+(id===current?' active':''); b.textContent=cases[id].name; b.onclick=()=>{current=id;renderTabs();renderPanel();highlightCases();showPearl();}; caseSelector.appendChild(b); }); }
+    function highlightCases(){ $$('.pill',caseSelector).forEach((el,i)=>{el.classList.toggle('active',caseIds[i]===current)}); }
+    function renderTabs(){ const names=['History','Labs','Orders']; tabs.innerHTML=''; names.forEach(n=>{const t=document.createElement('button'); t.className='tab'+(n===currentTab?' active':''); t.textContent=n; t.onclick=()=>{currentTab=n;renderTabs();renderPanel();}; tabs.appendChild(t);}); }
+    function renderPanel(){ panel.innerHTML = cases[current][currentTab.toLowerCase()]; }
     function showPearl(){ const fb=$('#caseFeedback'); fb.style.display='block'; fb.textContent=`Teaching pearl: ${cases[current].pearl}`; }
     renderCases(); renderTabs(); renderPanel(); showPearl();
+    $('#caseAsk').addEventListener('click', ()=>{ const val=$('#caseInput').value.trim(); if(!val) return; const fb=$('#caseFeedback'); fb.style.display='block'; const id=current; const t=val.toLowerCase(); let out='Consider ABCs and the Clinical Judgment model.'; if(id==='dka'&&/(first|priority|initial)/.test(t)) out='Start isotonic fluids, then insulin. Watch K⁺.'; if(id==='sepsis'&&/(first|bundle|hour)/.test(t)) out='Cultures → antibiotics within 1 hr + 30 mL/kg fluids.'; if(id==='transfusion'&&/(first|stop|reaction)/.test(t)) out='Stop transfusion; keep IV with NS; notify; send bag/tubing.'; if(id==='pe'&&/(oxygen|o2|first|priority)/.test(t)) out='O₂, HOB up, call for help, start anticoag per protocol.'; if(id==='pree'&&/(seizure|mag|magnesium|first|priority)/.test(t)) out='Magnesium for seizure prophylaxis; control BP.'; fb.textContent=out; $('#caseInput').value=''; });
 
-    // Case Q&A quick keyword matcher
-    $('#caseAsk').addEventListener('click', ()=>{
-      const val = $('#caseInput').value.trim(); if (!val) return;
-      const fb = $('#caseFeedback'); fb.style.display='block';
-      const id=current; const t=val.toLowerCase();
-      let out='Consider ABCs and the Clinical Judgment model.';
-      if (id==='dka'){ if (/(first|priority|initial)/.test(t)) out='Start with isotonic fluids to restore perfusion, then insulin. Watch K⁺ shifts.'; }
-      if (id==='sepsis'){ if (/(first|bundle|hour)/.test(t)) out='Cultures → broad antibiotics within 1 hr + 30 mL/kg isotonic fluids.'; }
-      if (id==='transfusion'){ if (/(first|stop|reaction)/.test(t)) out='Stop the transfusion immediately; keep IV with NS; notify and send bag/tubing.'; }
-      if (id==='pe'){ if (/(oxygen|o2|first|priority)/.test(t)) out='Provide O₂, HOB up, call for help, start anticoag per protocol.'; }
-      if (id==='pree'){ if (/(seizure|mag|magnesium|first|priority)/.test(t)) out='Stop triggers, give magnesium for seizure prophylaxis and control BP.'; }
-      fb.textContent = out;
-      $('#caseInput').value='';
-    });
+    // ---------- Signup (waitlist) ----------
+    $('#signupForm').addEventListener('submit',(e)=>{ e.preventDefault(); const email=$('#email').value.trim(); if(!email) return; const key='nclex_waitlist'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); if(!arr.includes(email)) arr.push(email); localStorage.setItem(key,JSON.stringify(arr)); const msg=$('#signupMsg'); msg.style.display='block'; msg.textContent="Thanks! You're on the list. We'll reach out with early-bird access."; $('#email').value=''; });
 
-    // Signup local save
-    $('#signupForm').addEventListener('submit', (e)=>{
+    // ---------- AUTH UI ----------
+    const authModal = $('#authModal'); const authClose=$('#authClose'); const openAuth=$('#openAuth');
+    const tabLogin=$('#tabLogin'); const tabRegister=$('#tabRegister'); const loginForm=$('#loginForm'); const regForm=$('#regForm');
+    const accountPill=$('#accountPill'); const acctEmail=$('#acctEmail'); const acctAvatar=$('#acctAvatar'); const logoutBtn=$('#logout');
+
+    function showModal(show=true){ authModal.classList.toggle('show',show); authModal.setAttribute('aria-hidden', show ? 'false':'true'); }
+    openAuth.addEventListener('click',()=>showModal(true)); authClose.addEventListener('click',()=>showModal(false));
+    authModal.addEventListener('click',(e)=>{ if(e.target===authModal) showModal(false); });
+
+    function setTab(which='login'){
+      const l = which==='login'; tabLogin.classList.toggle('active',l); tabRegister.classList.toggle('active',!l);
+      loginForm.style.display = l ? '' : 'none'; regForm.style.display = l ? 'none' : '';
+      $('#authTitle').textContent = l ? 'Welcome back' : 'Create your account';
+      $('#loginMsg').textContent=''; $('#regMsg').textContent='';
+    }
+    tabLogin.addEventListener('click',()=>setTab('login')); tabRegister.addEventListener('click',()=>setTab('register'));
+
+    function setAuthedUI(user){
+      if (user){
+        const email = user.email || 'user';
+        acctEmail.textContent = email;
+        acctAvatar.textContent = (email[0]||'U').toUpperCase();
+        accountPill.classList.add('show');
+        openAuth.style.display='none';
+      }else{
+        accountPill.classList.remove('show');
+        openAuth.style.display='';
+      }
+    }
+
+    // Initial session and listener
+    supabase.auth.getSession().then(({ data }) => setAuthedUI(data.session?.user || null));
+    supabase.auth.onAuthStateChange((_evt, session) => setAuthedUI(session?.user || null));
+
+    // Log in
+    loginForm.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const email = $('#email').value.trim(); if (!email) return;
-      const key='nclex_waitlist'; const arr=JSON.parse(localStorage.getItem(key)||'[]');
-      if (!arr.includes(email)) arr.push(email);
-      localStorage.setItem(key, JSON.stringify(arr));
-      const msg=$('#signupMsg'); msg.style.display='block';
-      msg.textContent="Thanks! You're on the list. We'll reach out with early-bird access.";
-      $('#email').value='';
+      $('#loginMsg').textContent='Logging in…';
+      const email=$('#loginEmail').value.trim(), password=$('#loginPass').value;
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error){ $('#loginMsg').textContent=error.message; return; }
+      $('#loginMsg').textContent='Success!'; showModal(false);
     });
 
-    // Initial load
+    // Register
+    regForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      $('#regMsg').textContent='Creating account…';
+      const email=$('#regEmail').value.trim(), password=$('#regPass').value, p2=$('#regPass2').value;
+      if (password!==p2){ $('#regMsg').textContent='Passwords do not match.'; return; }
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error){ $('#regMsg').textContent=error.message; return; }
+      $('#regMsg').textContent='Account created. Check your email to confirm (if required).';
+      setTab('login');
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', async ()=>{
+      await supabase.auth.signOut();
+      setAuthedUI(null);
+    });
+
+    // Kick off first load
     loadDailyFromSupabase();
   </script>
 </body>
