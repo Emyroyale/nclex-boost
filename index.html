@@ -118,24 +118,20 @@
     window.SUPABASE_ANON_KEY = "sb_publishable_M9L-yNV6SAL8YYx9Kkc-YA_u_TcsSWt";
   </script>
 
-  <header>
-    <div class="container nav">
-      <div class="brand"><div class="logo">NB</div> NCLEX Daily Boost</div>
-      <nav>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#daily">Daily Q</a>
-        <a href="#tutor">Tutor Mode</a>
-        <a href="#cases">NGN Cases</a>
-        <a href="#pricing">Pricing</a>
-        <button id="openAuth" class="btn btn-ghost">Log in / Register</button>
-        <div id="accountPill" class="account-pill">
-          <div class="avatar" id="acctAvatar">U</div>
-          <div id="acctEmail" class="muted" style="font-size:13px"></div>
-          <button id="logout" class="btn btn-ghost" style="padding:8px 12px">Sign out</button>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <nav>
+  <a href="#dashboard">Dashboard</a>
+  <a href="#daily">Daily Q</a>
+  <a href="#tutor">Tutor Mode</a>
+  <a href="#cases">NGN Cases</a>
+  <a href="#blog">Blog</a>      <!-- ✅ added -->
+  <a href="#pricing">Pricing</a>
+  <button id="openAuth" class="btn btn-ghost">Log in / Register</button>
+  <div id="accountPill" class="account-pill">
+    <div class="avatar" id="acctAvatar">U</div>
+    <div id="acctEmail" class="muted" style="font-size:13px"></div>
+    <button id="logout" class="btn btn-ghost" style="padding:8px 12px">Sign out</button>
+  </div>
+</nav>
 
   <main>
     <!-- Hero -->
@@ -280,6 +276,54 @@
         </div>
       </div>
     </section>
+
+    <!-- Blog -->
+<section id="blog">
+  <div class="container">
+    <h2 class="center">Blog</h2>
+    <p class="muted center">Short reads that target real NCLEX pain points: anxiety, prioritization, NGN strategy, and more.</p>
+    <div id="blogList" class="grid mt-16" style="grid-template-columns:1fr;gap:16px"></div>
+  </div>
+</section>
+
+    // --- BLOG DEMO RENDER ---
+(function renderBlog(){
+  const posts = [
+    {
+      title: "Beat Test Anxiety in 7 Minutes (ABCs + Box Breathing)",
+      excerpt: "A quick routine to reset your brain before tough items. Includes a 90-second checklist for ABCs triage.",
+      tag: "Mindset",
+      date: "Today"
+    },
+    {
+      title: "NGN Case Strategy: Read Tabs Without Drowning",
+      excerpt: "A 3-step scan pattern for History → Labs → Orders that surfaces the one action that changes outcomes.",
+      tag: "NGN",
+      date: "This week"
+    },
+    {
+      title: "Prioritization: Five Traps That Steal Points",
+      excerpt: "Pain vs. airway, new neuro changes, and the ‘stable vs. unstable’ misread—see examples and fixes.",
+      tag: "Safety",
+      date: "This week"
+    }
+  ];
+  const list = document.getElementById('blogList');
+  if (!list) return;
+  list.style.gridTemplateColumns = (window.innerWidth >= 900) ? 'repeat(3,1fr)' : '1fr';
+  list.innerHTML = posts.map(p => `
+    <article class="card pad">
+      <div class="badge">${p.tag}</div>
+      <h3 style="margin:8px 0 6px">${p.title}</h3>
+      <p class="muted" style="min-height:60px">${p.excerpt}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+        <span class="muted" style="font-size:12px">${p.date}</span>
+        <a class="btn btn-ghost" href="#blog">Read</a>
+      </div>
+    </article>
+  `).join('');
+})();
+
 
     <!-- Pricing -->
     <section id="pricing">
