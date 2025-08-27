@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NCLEX Daily Boost — Admin</title>
+<style>
+  :root { --bg:#0b1220; --card:#121a2b; --text:#e8eefc; --muted:#9bb0d1; --pri:#2aa6a1; --accent:#ff6b6b; }
+  body{margin:0;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .wrap{max-width:860px;margin:40px auto;padding:0 20px}
+  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);padding:20px}
+  h1{font-size:22px;margin:0 0 12px}
+  label{display:block;margin:12px 0 6px;color:var(--muted);font-weight:600}
+  input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#0e1628;color:var(--text)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row > div{flex:1 1 260px}
+  .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}
+  .btn-primary{background:linear-gradient(135deg,var(--pri),#62d2cc);color:#001416}
+  .btn-ghost{background:transparent;border:2px solid rgba(255,255,255,.2);color:var(--text)}
+  .mt16{margin-top:16px}.mt24{margin-top:24px}.muted{color:var(--muted)}
+  pre{white-space:pre-wrap;background:#0c1324;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px}
+  a{color:#7fdde2}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>NCLEX Daily Boost — Admin Generator</h1>
+    <p class="muted">This page calls your Cloudflare Worker <code>/generate</code> route which writes to Supabase using the server secret. Paste your <strong>ADMIN_TOKEN</strong> (kept in the Worker) when you use it.</p>
+
+    <!-- Minimal config (edit Worker URL if you ever rename it) -->
+    <script>
+      window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
+    </script>
+
+    <div class="row mt16">
+      <div>
+        <label>Admin Token (paste, not stored)</label>
+        <input id="token" type="password" placeholder="ADMIN_TOKEN" />
+      </div>
+      <div>
+        <label>Difficulty</label>
+        <select id="difficulty">
+          <option>easy</option>
+          <option selected>medium</option>
+          <option>hard</option>
+        </select>
+      </div>
+    </div>
+
+    <label class="mt16">Topic / Blueprint focus</label>
+    <input id="topic" placeholder="e.g., Sepsis initial bundle, Preeclampsia magnesium toxicity, Insulin safety" />
+
+    <div class="row mt16">
+      <button class="btn btn-primary" id="gen1">Generate 1</button>
+      <button class="btn btn-ghost" id="gen3">Generate 3</button>
+    </div>
+
+    <div id="out" class="mt24">
+      <div class="muted">Output</div>
+      <pre id="log">Ready.</pre>
+    </div>
+
+    <p class="muted mt24">
+      Tip: View new rows in Supabase → <em>Table Editor → public.questions</em>.  
+      Daily Question on the landing page always shows the <strong>newest</strong> row.
+    </p>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const log = msg => { const el = $('#log'); el.textContent = (typeof msg === 'string') ? msg : JSON.stringify(msg, null, 2); };
+
+async function generateOne(topic, difficulty, token){
+  const r = await fetch(`${window.WORKER_URL}/generate`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ topic, difficulty })
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error((data && (data.error || data.detail)) || `HTTP ${r.status}`);
+  return data;
+}
+
+$('#gen1').onclick = async () => {
+  const topic = $('#topic').value.trim() || 'Prioritization: ABCs & safety';
+  const diff = $('#difficulty').value;
+  const token = $('#token').value.trim();
+  if (!token) return log('Missing ADMIN_TOKEN. Paste it and try again.');
+  log('Generating…');
+  try{
+    const res = await generateOne(topic, diff, token);
+    log(res);
+  }catch(e){ log('Error: ' + e.message); }
+};
+
+$('#gen3').onclick = async () => {
+  const topic = $('#topic').value.trim() || 'Prioritization: ABCs & safety';
+  const diff = $('#difficulty').value;
+  const token = $('#token').value.trim();
+  if (!token) return log('Missing ADMIN_TOKEN. Paste it and try again.');
+  log('Generating 3…');
+  try{
+    const results = [];
+    for (let i=0;i<3;i++){
+      results.push(await generateOne(topic, diff, token));
+    }
+    log(results);
+  }catch(e){ log('Error: ' + e.message); }
+};
+</script>
+</body>
+</html>
