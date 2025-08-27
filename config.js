@@ -1,5 +1,5 @@
 // Cloudflare Worker (or Vercel Edge Function) URL
-window.WORKER_URL = "https://nclex-tutor.YOUR.workers.dev";
+window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev/";
 
 // Supabase (optional; enables loading a question from the DB)
 window.SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
