@@ -4,31 +4,41 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NCLEX Daily Boost — Admin</title>
+<meta name="robots" content="noindex">
 <style>
   :root { --bg:#0b1220; --card:#121a2b; --text:#e8eefc; --muted:#9bb0d1; --pri:#2aa6a1; --accent:#ff6b6b; }
+  *{box-sizing:border-box}
   body{margin:0;background:linear-gradient(180deg,#0b1220,#0e1526);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-  .wrap{max-width:860px;margin:40px auto;padding:0 20px}
+  .wrap{max-width:920px;margin:40px auto;padding:0 20px}
   .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.25);padding:20px}
   h1{font-size:22px;margin:0 0 12px}
+  p{margin:0 0 10px}
   label{display:block;margin:12px 0 6px;color:var(--muted);font-weight:600}
   input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#0e1628;color:var(--text)}
   .row{display:flex;gap:12px;flex-wrap:wrap}
-  .row > div{flex:1 1 260px}
+  .row > div{flex:1 1 240px}
   .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}
   .btn-primary{background:linear-gradient(135deg,var(--pri),#62d2cc);color:#001416}
   .btn-ghost{background:transparent;border:2px solid rgba(255,255,255,.2);color:var(--text)}
-  .mt16{margin-top:16px}.mt24{margin-top:24px}.muted{color:var(--muted)}
-  pre{white-space:pre-wrap;background:#0c1324;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px}
-  a{color:#7fdde2}
+  .btn-danger{background:linear-gradient(135deg,var(--accent),#ffa3a3);color:#2b0a0a}
+  .mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}
+  .muted{color:var(--muted)}
+  pre{white-space:pre-wrap;background:#0c1324;border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;max-height:420px;overflow:auto}
+  code{background:#0c1324;padding:2px 6px;border-radius:6px}
+  a{color:#7fdde2;text-decoration:none}
+  a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="card">
     <h1>NCLEX Daily Boost — Admin Generator</h1>
-    <p class="muted">This page calls your Cloudflare Worker <code>/generate</code> route which writes to Supabase using the server secret. Paste your <strong>ADMIN_TOKEN</strong> (kept in the Worker) when you use it.</p>
+    <p class="muted">
+      Generates original NCLEX-style questions via your <strong>Cloudflare Worker</strong> and inserts them into <strong>Supabase</strong> (server-side, safe).  
+      Paste your <code>ADMIN_TOKEN</code> from the Worker when you use this page.
+    </p>
 
-    <!-- Minimal config (edit Worker URL if you ever rename it) -->
+    <!-- Minimal config (edit if you ever rename your Worker) -->
     <script>
       window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
     </script>
@@ -46,14 +56,23 @@
           <option>hard</option>
         </select>
       </div>
+      <div>
+        <label>How many?</label>
+        <select id="count">
+          <option value="1" selected>1</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
+        </select>
+      </div>
     </div>
 
     <label class="mt16">Topic / Blueprint focus</label>
-    <input id="topic" placeholder="e.g., Sepsis initial bundle, Preeclampsia magnesium toxicity, Insulin safety" />
+    <input id="topic" placeholder="e.g., Sepsis initial bundle, Preeclampsia magnesium toxicity, Insulin safety, Prioritization ABCs" />
 
     <div class="row mt16">
-      <button class="btn btn-primary" id="gen1">Generate 1</button>
-      <button class="btn btn-ghost" id="gen3">Generate 3</button>
+      <button class="btn btn-primary" id="generate">Generate</button>
+      <button class="btn btn-ghost" id="test">Quick test (no insert, health)</button>
+      <a class="btn btn-ghost" href="./" title="Open site">Open site ↗</a>
     </div>
 
     <div id="out" class="mt24">
@@ -62,15 +81,19 @@
     </div>
 
     <p class="muted mt24">
-      Tip: View new rows in Supabase → <em>Table Editor → public.questions</em>.  
-      Daily Question on the landing page always shows the <strong>newest</strong> row.
+      Tip: New rows appear in Supabase → <em>Table Editor → public.questions</em>. Your landing page shows the <strong>newest</strong> row as the “Daily Question”.
     </p>
   </div>
 </div>
 
 <script>
 const $ = s => document.querySelector(s);
-const log = msg => { const el = $('#log'); el.textContent = (typeof msg === 'string') ? msg : JSON.stringify(msg, null, 2); };
+const log = (msg) => {
+  const el = $('#log');
+  if (typeof msg === 'string') { el.textContent = msg; return; }
+  try { el.textContent = JSON.stringify(msg, null, 2); }
+  catch { el.textContent = String(msg); }
+};
 
 async function generateOne(topic, difficulty, token){
   const r = await fetch(`${window.WORKER_URL}/generate`, {
@@ -81,36 +104,52 @@ async function generateOne(topic, difficulty, token){
     },
     body: JSON.stringify({ topic, difficulty })
   });
-  const data = await r.json();
-  if (!r.ok) throw new Error((data && (data.error || data.detail)) || `HTTP ${r.status}`);
+  let data = null;
+  try { data = await r.json(); } catch {}
+  if (!r.ok) {
+    const detail = (data && (data.error || data.detail || data.message)) || `HTTP ${r.status}`;
+    throw new Error(detail);
+  }
   return data;
 }
 
-$('#gen1').onclick = async () => {
+$('#generate').onclick = async () => {
   const topic = $('#topic').value.trim() || 'Prioritization: ABCs & safety';
   const diff = $('#difficulty').value;
   const token = $('#token').value.trim();
-  if (!token) return log('Missing ADMIN_TOKEN. Paste it and try again.');
-  log('Generating…');
-  try{
-    const res = await generateOne(topic, diff, token);
-    log(res);
-  }catch(e){ log('Error: ' + e.message); }
-};
+  const n = parseInt($('#count').value, 10) || 1;
 
-$('#gen3').onclick = async () => {
-  const topic = $('#topic').value.trim() || 'Prioritization: ABCs & safety';
-  const diff = $('#difficulty').value;
-  const token = $('#token').value.trim();
-  if (!token) return log('Missing ADMIN_TOKEN. Paste it and try again.');
-  log('Generating 3…');
+  if (!token) { log('Missing ADMIN_TOKEN. Paste it and try again.'); return; }
+
+  log(`Generating ${n} question(s)…`);
   try{
     const results = [];
-    for (let i=0;i<3;i++){
-      results.push(await generateOne(topic, diff, token));
+    for (let i=0; i<n; i++) {
+      const res = await generateOne(topic, diff, token);
+      results.push(res);
     }
-    log(results);
-  }catch(e){ log('Error: ' + e.message); }
+    log({ ok:true, generated:n, results });
+  }catch(e){
+    log('Error: ' + e.message);
+  }
+};
+
+$('#test').onclick = async () => {
+  // Optional health check (fallback to a POST with "ping")
+  const token = $('#token').value.trim();
+  if (!token) { log('Paste ADMIN_TOKEN first.'); return; }
+  log('Pinging worker…');
+  try{
+    const r = await fetch(`${window.WORKER_URL}`, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify({ message: 'Ping from admin page' })
+    });
+    const data = await r.json();
+    log({ ok:r.ok, worker_response:data });
+  }catch(e){
+    log('Ping failed: ' + e.message);
+  }
 };
 </script>
 </body>
