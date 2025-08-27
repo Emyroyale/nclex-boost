@@ -20,7 +20,8 @@
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
     .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#53cbc6);
       display:grid;place-items:center;color:white;font-weight:900;box-shadow:var(--shadow)}
-    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600}
+    nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;margin:0 6px;font-weight:600}
     nav a:hover{color:var(--text)}
     .hero{padding:56px 0 28px}
     .hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px}
@@ -103,35 +104,39 @@
     .field{display:flex;flex-direction:column;margin-top:10px}
     .field input{padding:12px 14px;border-radius:10px;border:1px solid rgba(31,45,61,.15)}
     .help{font-size:12px;color:var(--muted)}
-    .right{margin-left:auto}
     .account-pill{display:none;align-items:center;gap:8px}
     .account-pill.show{display:flex}
     .avatar{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--primary),#69d9d3);color:white;display:grid;place-items:center;font-weight:900}
   </style>
 </head>
 <body>
-  <!-- Inline config (EDIT the ANON key below) + Supabase JS -->
+  <!-- Config + Supabase JS (EDIT your publishable key) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
     window.SUPABASE_URL = "https://awfhdinvmhalhdrecxla.supabase.co";
-    window.SUPABASE_ANON_KEY = "sb_publishable_M9L-yNV6SAL8YYx9Kkc-YA_u_TcsSWt";
+    window.SUPABASE_ANON_KEY = "sb_publishable_XXXX_REPLACE_WITH_YOURS";
   </script>
 
-  <nav>
-  <a href="#dashboard">Dashboard</a>
-  <a href="#daily">Daily Q</a>
-  <a href="#tutor">Tutor Mode</a>
-  <a href="#cases">NGN Cases</a>
-  <a href="#blog">Blog</a>      <!-- ✅ added -->
-  <a href="#pricing">Pricing</a>
-  <button id="openAuth" class="btn btn-ghost">Log in / Register</button>
-  <div id="accountPill" class="account-pill">
-    <div class="avatar" id="acctAvatar">U</div>
-    <div id="acctEmail" class="muted" style="font-size:13px"></div>
-    <button id="logout" class="btn btn-ghost" style="padding:8px 12px">Sign out</button>
-  </div>
-</nav>
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo">NB</div> NCLEX Daily Boost</div>
+      <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#daily">Daily Q</a>
+        <a href="#tutor">Tutor Mode</a>
+        <a href="#cases">NGN Cases</a>
+        <a href="#blog">Blog</a>
+        <a href="#pricing">Pricing</a>
+        <button id="openAuth" class="btn btn-ghost">Log in / Register</button>
+        <div id="accountPill" class="account-pill">
+          <div class="avatar" id="acctAvatar">U</div>
+          <div id="acctEmail" class="muted" style="font-size:13px"></div>
+          <button id="logout" class="btn btn-ghost" style="padding:8px 12px">Sign out</button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <!-- Hero -->
@@ -174,7 +179,7 @@
       </div>
     </section>
 
-    <!-- Dashboard (mock) -->
+    <!-- Dashboard -->
     <section id="dashboard">
       <div class="container dashboard">
         <div class="card pad">
@@ -260,7 +265,7 @@
       </div>
     </section>
 
-    <!-- NGN Cases -->
+    <!-- NGN Case Studies -->
     <section id="cases">
       <div class="container">
         <h2 class="center">NGN Case Studies</h2>
@@ -278,52 +283,13 @@
     </section>
 
     <!-- Blog -->
-<section id="blog">
-  <div class="container">
-    <h2 class="center">Blog</h2>
-    <p class="muted center">Short reads that target real NCLEX pain points: anxiety, prioritization, NGN strategy, and more.</p>
-    <div id="blogList" class="grid mt-16" style="grid-template-columns:1fr;gap:16px"></div>
-  </div>
-</section>
-
-    // --- BLOG DEMO RENDER ---
-(function renderBlog(){
-  const posts = [
-    {
-      title: "Beat Test Anxiety in 7 Minutes (ABCs + Box Breathing)",
-      excerpt: "A quick routine to reset your brain before tough items. Includes a 90-second checklist for ABCs triage.",
-      tag: "Mindset",
-      date: "Today"
-    },
-    {
-      title: "NGN Case Strategy: Read Tabs Without Drowning",
-      excerpt: "A 3-step scan pattern for History → Labs → Orders that surfaces the one action that changes outcomes.",
-      tag: "NGN",
-      date: "This week"
-    },
-    {
-      title: "Prioritization: Five Traps That Steal Points",
-      excerpt: "Pain vs. airway, new neuro changes, and the ‘stable vs. unstable’ misread—see examples and fixes.",
-      tag: "Safety",
-      date: "This week"
-    }
-  ];
-  const list = document.getElementById('blogList');
-  if (!list) return;
-  list.style.gridTemplateColumns = (window.innerWidth >= 900) ? 'repeat(3,1fr)' : '1fr';
-  list.innerHTML = posts.map(p => `
-    <article class="card pad">
-      <div class="badge">${p.tag}</div>
-      <h3 style="margin:8px 0 6px">${p.title}</h3>
-      <p class="muted" style="min-height:60px">${p.excerpt}</p>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
-        <span class="muted" style="font-size:12px">${p.date}</span>
-        <a class="btn btn-ghost" href="#blog">Read</a>
+    <section id="blog">
+      <div class="container">
+        <h2 class="center">Blog</h2>
+        <p class="muted center">Short reads for real pain points: anxiety, prioritization, NGN strategy, and more.</p>
+        <div id="blogList" class="grid mt-16" style="grid-template-columns:1fr;gap:16px"></div>
       </div>
-    </article>
-  `).join('');
-})();
-
+    </section>
 
     <!-- Pricing -->
     <section id="pricing">
@@ -455,12 +421,12 @@
   </div>
 
   <script>
-    // ---------- Helpers ----------
+    // ---------- Small helpers ----------
     const $ = (s, el=document) => el.querySelector(s);
     const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
     $('#year').textContent = new Date().getFullYear();
 
-    // ---------- Supabase Client (for Auth + Questions) ----------
+    // ---------- Supabase Client ----------
     const supabase = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
 
     // ---------- DAILY QUESTION (Supabase) ----------
@@ -488,7 +454,7 @@
         window._lastRationale = q.rationale || '';
         window._latestQuestion = { ...q, correct: CORRECT };
         const r = $('#dqRat'); r.classList.remove('show'); r.textContent='';
-        $$('input[name="dq"]').forEach(i=>i.checked=false);
+        $$( 'input[name="dq"]' ).forEach(i=>i.checked=false);
       }catch(e){ console.warn('Supabase load failed:', e); }
     }
 
@@ -518,7 +484,7 @@
     }
     $('#dqDone').addEventListener('click', markStreak); updateStreakDisplay();
 
-    // ---------- Tutor (Worker) ----------
+    // ---------- Tutor (Worker + useLatest) ----------
     const chat = $('#chat');
     function bubble(txt, who='tutor'){ const d=document.createElement('div'); d.className='bubble '+who; d.innerHTML=txt; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; }
     bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.');
@@ -527,7 +493,6 @@
       return fetch(window.WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message })}).then(r=>r.json());
     }
 
-    // Ask latest DB question in Tutor, grade by letter
     $('#useLatest').addEventListener('click', ()=>{
       if (!window._latestQuestion){ alert('No daily question loaded yet. Refresh and try again.'); return; }
       const q=window._latestQuestion; const letters=['A','B','C','D','E','F'];
@@ -549,7 +514,7 @@
       catch{ bubble('<strong>Tutor:</strong> Network issue—try again in a moment.','tutor'); }
     });
 
-    // ---------- NGN Cases (unchanged core) ----------
+    // ---------- NGN Cases ----------
     const cases = {
       dka:{name:'DKA',history:`<ul><li>19-year-old with type 1 DM, missed insulin after viral illness</li><li>Polyuria, polydipsia, abdo pain, Kussmaul respirations, fruity breath</li></ul>`,
         labs:`<ul><li>Glucose 520</li><li>pH 7.12, HCO₃ 12</li><li>Serum K⁺ 5.6 (may fall with insulin)</li><li>Urine ketones: large</li></ul>`,
@@ -582,8 +547,40 @@
     renderCases(); renderTabs(); renderPanel(); showPearl();
     $('#caseAsk').addEventListener('click', ()=>{ const val=$('#caseInput').value.trim(); if(!val) return; const fb=$('#caseFeedback'); fb.style.display='block'; const id=current; const t=val.toLowerCase(); let out='Consider ABCs and the Clinical Judgment model.'; if(id==='dka'&&/(first|priority|initial)/.test(t)) out='Start isotonic fluids, then insulin. Watch K⁺.'; if(id==='sepsis'&&/(first|bundle|hour)/.test(t)) out='Cultures → antibiotics within 1 hr + 30 mL/kg fluids.'; if(id==='transfusion'&&/(first|stop|reaction)/.test(t)) out='Stop transfusion; keep IV with NS; notify; send bag/tubing.'; if(id==='pe'&&/(oxygen|o2|first|priority)/.test(t)) out='O₂, HOB up, call for help, start anticoag per protocol.'; if(id==='pree'&&/(seizure|mag|magnesium|first|priority)/.test(t)) out='Magnesium for seizure prophylaxis; control BP.'; fb.textContent=out; $('#caseInput').value=''; });
 
+    // ---------- BLOG DEMO RENDER ----------
+    (function renderBlog(){
+      const posts = [
+        { title: "Beat Test Anxiety in 7 Minutes (ABCs + Box Breathing)",
+          excerpt: "A quick routine to reset your brain before tough items. Includes a 90-second checklist for ABCs triage.",
+          tag: "Mindset", date: "Today" },
+        { title: "NGN Case Strategy: Read Tabs Without Drowning",
+          excerpt: "A 3-step scan pattern for History → Labs → Orders that surfaces the one action that changes outcomes.",
+          tag: "NGN", date: "This week" },
+        { title: "Prioritization: Five Traps That Steal Points",
+          excerpt: "Pain vs. airway, new neuro changes, and the ‘stable vs. unstable’ misread—see examples and fixes.",
+          tag: "Safety", date: "This week" }
+      ];
+      const list = document.getElementById('blogList'); if (!list) return;
+      function layout(){ list.style.gridTemplateColumns = (window.innerWidth >= 900) ? 'repeat(3,1fr)' : '1fr'; }
+      window.addEventListener('resize', layout); layout();
+      list.innerHTML = posts.map(p => `
+        <article class="card pad">
+          <div class="badge">${p.tag}</div>
+          <h3 style="margin:8px 0 6px">${p.title}</h3>
+          <p class="muted" style="min-height:60px">${p.excerpt}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+            <span class="muted" style="font-size:12px">${p.date}</span>
+            <a class="btn btn-ghost" href="#blog">Read</a>
+          </div>
+        </article>
+      `).join('');
+    })();
+
     // ---------- Signup (waitlist) ----------
-    $('#signupForm').addEventListener('submit',(e)=>{ e.preventDefault(); const email=$('#email').value.trim(); if(!email) return; const key='nclex_waitlist'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); if(!arr.includes(email)) arr.push(email); localStorage.setItem(key,JSON.stringify(arr)); const msg=$('#signupMsg'); msg.style.display='block'; msg.textContent="Thanks! You're on the list. We'll reach out with early-bird access."; $('#email').value=''; });
+    $('#signupForm').addEventListener('submit',(e)=>{ e.preventDefault(); const email=$('#email').value.trim(); if(!email) return;
+      const key='nclex_waitlist'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); if(!arr.includes(email)) arr.push(email);
+      localStorage.setItem(key,JSON.stringify(arr)); const msg=$('#signupMsg'); msg.style.display='block';
+      msg.textContent="Thanks! You're on the list. We'll reach out with early-bird access."; $('#email').value=''; });
 
     // ---------- AUTH UI ----------
     const authModal = $('#authModal'); const authClose=$('#authClose'); const openAuth=$('#openAuth');
@@ -624,7 +621,7 @@
       e.preventDefault();
       $('#loginMsg').textContent='Logging in…';
       const email=$('#loginEmail').value.trim(), password=$('#loginPass').value;
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error){ $('#loginMsg').textContent=error.message; return; }
       $('#loginMsg').textContent='Success!'; showModal(false);
     });
@@ -635,7 +632,7 @@
       $('#regMsg').textContent='Creating account…';
       const email=$('#regEmail').value.trim(), password=$('#regPass').value, p2=$('#regPass2').value;
       if (password!==p2){ $('#regMsg').textContent='Passwords do not match.'; return; }
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { error } = await supabase.auth.signUp({ email, password });
       if (error){ $('#regMsg').textContent=error.message; return; }
       $('#regMsg').textContent='Account created. Check your email to confirm (if required).';
       setTab('login');
@@ -647,7 +644,7 @@
       setAuthedUI(null);
     });
 
-    // Kick off first load
+    // Kick off first loads
     loadDailyFromSupabase();
   </script>
 </body>
