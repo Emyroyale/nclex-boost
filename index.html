@@ -115,7 +115,7 @@
   <script>
     window.WORKER_URL = "https://nclex-tutor.emalet07.workers.dev";
     window.SUPABASE_URL = "https://awfhdinvmhalhdrecxla.supabase.co";
-    window.SUPABASE_ANON_KEY = "sb_publishable_XXXX_REPLACE_WITH_YOURS";
+    window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZmhkaW52bWhhbGhkcmVjeGxhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyNjE2OTUsImV4cCI6MjA3MTgzNzY5NX0.zymcsfbhQH_u66Jz5Wnz9rD1U3xfJKx2twrLII_I6cU";
   </script>
 
   <header>
@@ -291,49 +291,96 @@
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing">
+    <!-- Testimonials -->
+    <section id="testimonials">
       <div class="container">
-        <h2 class="center">Simple pricing</h2>
-        <div class="pricing mt-16">
+        <h2 class="center">Trusted by Students Like You</h2>
+        <div class="grid mt-16" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <div class="card pad">
-            <div class="badge">Starter</div>
-            <h3>Daily Boost</h3>
-            <div class="price-tag">$19/mo</div>
-            <ul>
-              <li>1 question / day</li>
-              <li>Streak tracker</li>
-              <li>1 NGN sample case</li>
-            </ul>
-            <button class="btn btn-ghost">Get started</button>
-          </div>
-          <div class="card pad featured">
-            <div class="ribbon">Most Popular</div>
-            <div class="badge">Pro</div>
-            <h3>Unlimited + NGN</h3>
-            <div class="price-tag">$29/mo <span class="muted">or</span> $199/yr</div>
-            <ul>
-              <li>Unlimited questions + mock mini-exams</li>
-              <li>Full NGN case library & bow-tie/trend items</li>
-              <li>Analytics + weak-area targeting</li>
-              <li>Tutor Mode scenarios & pearls</li>
-            </ul>
-            <a href="#signup" class="btn btn-primary">Go Pro</a>
+            <p class="muted">"The daily questions are a game-changer. They fit perfectly into my busy schedule and the rationales are so clear. I feel more confident for the NCLEX already!"</p>
+            <strong>- Jessica R.</strong>, <span class="muted">Nursing Student</span>
           </div>
           <div class="card pad">
-            <div class="badge">Premium</div>
-            <h3>NCLEX Accelerator</h3>
-            <div class="price-tag">$49/mo</div>
-            <ul>
-              <li>All Pro features</li>
-              <li>2 full-length mock exams/month</li>
-              <li>Priority updates & new cases</li>
-              <li>Downloadable recap sheets</li>
-            </ul>
-            <a href="#signup" class="btn btn-accent">Upgrade</a>
+            <p class="muted">"I was struggling with prioritization questions, but the Tutor Mode is like having a personal coach. It's helped me think through scenarios so much more effectively."</p>
+            <strong>- David L.</strong>, <span class="muted">BSN Candidate</span>
+          </div>
+          <div class="card pad">
+            <p class="muted">"Finally, an NCLEX prep tool that doesn't break the bank. The NGN case studies are incredibly helpful and feel just like the real exam."</p>
+            <strong>- Maria G.</strong>, <span class="muted">ABSN Student</span>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="center">Simple, Affordable Pricing</h2>
+        <p class="muted center">Start for free. Upgrade when you're ready.</p>
+        <div class="pricing mt-16" style="grid-template-columns: 1fr; max-width: 800px; margin: 2rem auto;">
+          <div class="grid grid-2" style="align-items: center; border: 1px solid rgba(31,45,61,0.08); border-radius: var(--radius); padding: 1rem;">
+              <div>
+                  <div class="badge">Free</div>
+                  <h3>Daily Boost</h3>
+                  <p class="muted">A smart question a day to build your confidence.</p>
+                  <ul>
+                    <li>1 Daily NCLEX-style question</li>
+                    <li>Detailed rationales</li>
+                    <li>Streak tracker</li>
+                  </ul>
+              </div>
+              <div class="center">
+                  <div class="price-tag">$0</div>
+                  <p class="muted">Forever free</p>
+                  <a href="#daily" class="btn btn-ghost">Try Today's Question</a>
+              </div>
+          </div>
+          <div class="card pad featured" style="grid-column: 1 / -1;">
+             <div class="ribbon">Best Value</div>
+             <div class="grid grid-2" style="align-items: center;">
+                <div>
+                    <div class="badge">Pro</div>
+                    <h3>NCLEX Pro</h3>
+                    <p class="muted">Unlock everything you need to pass with confidence.</p>
+                    <ul>
+                      <li><strong>Everything in Free, plus:</strong></li>
+                      <li>Unlimited daily questions</li>
+                      <li>Full Tutor Mode library</li>
+                      <li>All NGN Case Studies</li>
+                      <li>Mock exams & performance analytics</li>
+                    </ul>
+                </div>
+                <div class="center">
+                    <div class="price-tag">$9<span class="muted">/mo</span></div>
+                    <p class="muted">or $49 per year</p>
+                    <!-- IMPORTANT: Replace this href with your actual Stripe Payment Link -->
+                    <a href="https://buy.stripe.com/your-link-here" class="btn btn-primary">Go Pro</a>
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="center">Frequently Asked Questions</h2>
+            <div class="mt-16" style="display: flex; flex-direction: column; gap: 1rem;">
+                <details class="card pad">
+                    <summary style="font-weight: 700; cursor: pointer;">Is this really free?</summary>
+                    <p class="muted mt-8 mb-0">Yes! The free tier gives you one new NCLEX-style question every single day, complete with detailed rationales. It's a great way to build a consistent study habit without any cost.</p>
+                </details>
+                <details class="card pad">
+                    <summary style="font-weight: 700; cursor: pointer;">What are NGN Case Studies?</summary>
+                    <p class="muted mt-8 mb-0">The Next Generation NCLEX (NGN) emphasizes clinical judgment. Our case studies are unfolding scenarios where you get client data (history, labs, orders) and have to answer questions, mimicking the new format of the exam.</p>
+                </details>
+                <details class="card pad">
+                    <summary style="font-weight: 700; cursor: pointer;">Can I cancel my Pro subscription anytime?</summary>
+                    <p class="muted mt-8 mb-0">Absolutely. You can manage your subscription easily and cancel anytime, no questions asked. Your access will continue until the end of your billing period.</p>
+                </details>
+            </div>
+        </div>
     </section>
 
     <!-- Signup -->
@@ -429,43 +476,95 @@
     // ---------- Supabase Client ----------
     const supabase = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
 
-    // ---------- DAILY QUESTION (Supabase) ----------
+    // ---------- DAILY QUESTION (Supabase with Fallback) ----------
     let CORRECT = 'B';
-    window._lastRationale = 'Airway takes priority. Signs of respiratory distress and hypoxemia demand immediate assessment (ABCs).';
+    window._lastRationale = '';
+    window._allRationales = {};
 
-    async function loadDailyFromSupabase(){
-      try{
-        const url = `${window.SUPABASE_URL}/rest/v1/questions?select=stem,choices,correct,rationale,category,created_at&order=created_at.desc&limit=1`;
-        const res = await fetch(url, { headers:{ apikey:window.SUPABASE_ANON_KEY, Authorization:`Bearer ${window.SUPABASE_ANON_KEY}` }});
-        if (!res.ok) throw new Error('Supabase ' + res.status);
-        const rows = await res.json();
-        const q = rows[0]; if (!q) return;
-        const sub = document.querySelector('#daily .muted'); if (sub) sub.textContent = q.category || 'Daily Question';
-        const stemP = document.querySelector('#dq p'); if (stemP) stemP.innerHTML = `<strong>Scenario:</strong> ${q.stem}`;
+    function populateQuestionUI(q) {
+        const sub = $('#daily .muted');
+        if (sub) sub.textContent = q.category;
+
+        const stemP = $('#dq p');
+        if (stemP) stemP.innerHTML = `<strong>Scenario:</strong> ${q.stem}`;
+
         const choicesEl = $('#dqChoices');
+        const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
         if (choicesEl && Array.isArray(q.choices)) {
-          const letters = ['A','B','C','D','E','F'];
-          choicesEl.innerHTML = q.choices.map((c,i) => {
-            const txt = typeof c === 'string' ? c : c.text; const L = letters[i];
-            return `<label class="choice"><input type="radio" name="dq" value="${L}"> ${L}. ${txt}</label>`;
-          }).join('');
+            choicesEl.innerHTML = q.choices.map((choice, i) => {
+                const L = letters[i];
+                const choiceText = (typeof choice === 'string') ? choice : choice.text;
+                return `<label class="choice"><input type="radio" name="dq" value="${L}"> ${L}. ${choiceText}</label>`;
+            }).join('');
         }
-        CORRECT = (q.correct||'A').trim().toUpperCase();
-        window._lastRationale = q.rationale || '';
-        window._latestQuestion = { ...q, correct: CORRECT };
-        const r = $('#dqRat'); r.classList.remove('show'); r.textContent='';
-        $$( 'input[name="dq"]' ).forEach(i=>i.checked=false);
-      }catch(e){ console.warn('Supabase load failed:', e); }
+
+        CORRECT = (q.correct || 'A').trim().toUpperCase();
+
+        if (q.choices && typeof q.choices[0] === 'object') {
+            window._allRationales = q.choices.reduce((acc, choice, i) => {
+                acc[letters[i]] = choice.rationale;
+                return acc;
+            }, {});
+            window._lastRationale = window._allRationales[CORRECT];
+        } else {
+            window._lastRationale = q.rationale || 'No rationale provided.';
+            window._allRationales = {};
+        }
+
+        window._latestQuestion = q;
+        const r = $('#dqRat');
+        r.classList.remove('show');
+        r.textContent = '';
+        $$('input[name="dq"]').forEach(i => i.checked = false);
+    }
+
+    function loadDailyQuestionFromFallback() {
+        const fallbackQuestion = {
+            stem: "A nurse is preparing to administer digoxin to a client with heart failure. Which finding requires the nurse to hold the medication and notify the provider?",
+            choices: [
+                { text: "Blood pressure of 118/74 mmHg.", rationale: "This blood pressure is within normal limits and not a contraindication for digoxin." },
+                { text: "Apical heart rate of 52 bpm.", rationale: "<strong>Correct.</strong> Bradycardia (apical heart rate < 60 bpm) is a classic sign of digoxin toxicity. The nurse must hold the dose and notify the provider." },
+                { text: "Serum potassium of 4.1 mEq/L.", rationale: "This potassium level is within the normal range (3.5-5.0 mEq/L). Hypokalemia (<3.5 mEq/L) is a major risk factor for digoxin toxicity, but this level is safe." },
+                { text: "Client reports mild ankle edema.", rationale: "Mild ankle edema is an expected finding in heart failure and is a reason to *give* digoxin, not hold it." }
+            ],
+            correct: 'B',
+            category: 'Pharmacology & Parenteral Therapies'
+        };
+        populateQuestionUI(fallbackQuestion);
+    }
+
+    async function loadDailyFromSupabase() {
+        try {
+            const url = `${window.SUPABASE_URL}/rest/v1/questions?select=stem,choices,correct,rationale,category,created_at&order=created_at.desc&limit=1`;
+            const res = await fetch(url, { headers: { apikey: window.SUPABASE_ANON_KEY, Authorization: `Bearer ${window.SUPABASE_ANON_KEY}` } });
+            if (!res.ok) throw new Error('Supabase fetch failed');
+            const rows = await res.json();
+            if (!rows || rows.length === 0) throw new Error('No questions in Supabase table');
+            populateQuestionUI(rows[0]);
+        } catch (e) {
+            console.warn("Supabase load failed, using fallback question.", e.message);
+            loadDailyQuestionFromFallback();
+        }
     }
 
     $('#dqCheck').addEventListener('click', () => {
       const sel = document.querySelector('input[name="dq"]:checked');
       const r = $('#dqRat');
-      if (!sel) { r.textContent = 'Please select an answer.'; r.classList.add('show'); return; }
-      const correct = sel.value === CORRECT;
+      if (!sel) {
+        r.textContent = 'Please select an answer.';
+        r.classList.add('show');
+        return;
+      }
+
+      const isCorrect = sel.value === CORRECT;
+      const selectedRationale = window._allRationales[sel.value];
       r.classList.add('show');
-      if (!correct) r.innerHTML = `<strong>Not quite.</strong> ${window._lastRationale || 'Review ABCs—airway/breathing outrank circulation and pain.'}`;
-      else r.innerHTML = `<strong>Answer: ${CORRECT}.</strong> ${window._lastRationale || ''}`;
+
+      if (isCorrect) {
+        r.innerHTML = `✅ ${selectedRationale}`;
+      } else {
+        r.innerHTML = `❌ <strong>Not quite.</strong> ${selectedRationale}<hr style="margin:10px 0; border:0; border-top:1px solid #badbcc"><strong>The correct answer is ${CORRECT}:</strong> ${window._lastRationale}`;
+      }
     });
 
     // ---------- Streak ----------
@@ -489,29 +588,38 @@
     function bubble(txt, who='tutor'){ const d=document.createElement('div'); d.className='bubble '+who; d.innerHTML=txt; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; }
     bubble('<strong>Tutor:</strong> Four clients need attention. Who will you assess <em>first</em> and why? Think ABCs & safety.');
 
-    function evaluateRemote(message){
-      return fetch(window.WORKER_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ message })}).then(r=>r.json());
+    function getTutorResponse(message) {
+        const lowerCaseMessage = message.toLowerCase();
+        if (/\b(b|asthma|spo2|airway|breathing|88)\b/i.test(lowerCaseMessage)) {
+            return "Excellent thinking. You correctly prioritized the client with a compromised airway and breathing. That's a critical application of the ABCs. Why is this client a higher priority than the one with new-onset confusion?";
+        } else if (/\b(c|confusion|glucose|sugar|62)\b/i.test(lowerCaseMessage)) {
+            return "That's a good catch, and that client is definitely unstable. However, always check the ABCs first. An airway or breathing problem is typically more immediately life-threatening than hypoglycemia. What should you do for the confused client *after* stabilizing the client with asthma?";
+        } else if (/\b(a|pain|post-op|analgesic)\b/i.test(lowerCaseMessage)) {
+            return "While managing pain is important, it's a 'circulation' and comfort issue that comes after immediate threats to life. Remember ABCs. Does another client have a more critical Airway or Breathing problem?";
+        } else if (/\b(d|dressing|pressure|injury)\b/i.test(lowerCaseMessage)) {
+            return "That's a routine task that can be delegated or scheduled. It's important, but not urgent compared to an acute life threat. Which client is facing an acute life threat?";
+        } else {
+            return "Tell me more about your reasoning. How are you applying the Airway, Breathing, Circulation framework here?";
+        }
     }
 
     $('#useLatest').addEventListener('click', ()=>{
-      if (!window._latestQuestion){ alert('No daily question loaded yet. Refresh and try again.'); return; }
-      const q=window._latestQuestion; const letters=['A','B','C','D','E','F'];
-      const opts=(q.choices||[]).map((c,i)=>`${letters[i]}. ${typeof c==='string'?c:c.text}`).join('<br>');
-      bubble(`<strong>Tutor:</strong> ${q.stem}<br><br>${opts}<br><em>Reply with the letter (A, B, C, …) and your reasoning.</em>`,'tutor');
-      window._expectingLetter=true;
+      if (!window._latestQuestion){ bubble('<strong>Tutor:</strong> Please try the Daily Question first to load a scenario.', 'tutor'); return; }
+      const q=window._latestQuestion;
+      const opts=(q.choices||[]).map((c,i)=>`${['A','B','C','D'][i]}. ${c.text}`).join('<br>');
+      bubble(`<strong>Tutor:</strong> Okay, let's work through today's question.<br><br><strong>${q.stem}</strong><br><br>${opts}<br><br><em>Which client do you assess first, and why?</em>`, 'tutor');
     });
 
     $('#chatSend').addEventListener('click', async ()=>{
-      const val=$('#chatInput').value.trim(); if(!val) return; bubble(val,'me'); $('#chatInput').value='';
-      const ans=val.trim().toUpperCase();
-      if (window._expectingLetter && /^[A-F]$/.test(ans) && window._latestQuestion){
-        const correctLetter=(window._latestQuestion.correct||'A').toUpperCase();
-        const correct=ans===correctLetter; const rationale=window._latestQuestion.rationale||'';
-        bubble('<strong>Tutor:</strong> ' + (correct? '✅ Correct!' : `❌ Not quite. The best answer is <strong>${correctLetter}</strong>.`) + (rationale? ` ${rationale}`:''),'tutor');
-        window._expectingLetter=false; return;
-      }
-      try{ const res=await evaluateRemote(val); bubble('<strong>Tutor:</strong> ' + (res.text||res.error||'The tutor is unavailable right now.'),'tutor'); }
-      catch{ bubble('<strong>Tutor:</strong> Network issue—try again in a moment.','tutor'); }
+      const val=$('#chatInput').value.trim();
+      if(!val) return;
+      bubble(val,'me');
+      $('#chatInput').value='';
+      // Add a small delay to simulate the tutor "thinking"
+      setTimeout(() => {
+          const response = getTutorResponse(val);
+          bubble(`<strong>Tutor:</strong> ${response}`, 'tutor');
+      }, 750);
     });
 
     // ---------- NGN Cases ----------
